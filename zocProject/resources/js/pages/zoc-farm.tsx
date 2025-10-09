@@ -117,15 +117,16 @@ export default function ZOCFarm() {
                     id="home"
                     className="relative min-h-screen flex items-center justify-center"
                     style={{
-                        background: `linear-gradient(rgba(58, 76, 47, 0.7), rgba(58, 76, 47, 0.7)), linear-gradient(to right, #3A4C2F, #7BB661)`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
+                        backgroundImage: `url('/images/homeHero.jpg')`,
+                        backgroundSize: '150%',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
                     }}
                 >
-                    <div className="hero-overlay absolute inset-0"></div>
+                    <div className="hero-overlay absolute inset-0" style={{backgroundColor: 'rgba(58, 76, 47, 0.85)'}}></div>
                     <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
-                            Transforming the <br />
+                            Inspiring the <br />
                             <span style={{color: '#F4C542'}}>Agricultural Value Chain</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto leading-relaxed">
@@ -310,113 +311,6 @@ export default function ZOCFarm() {
                                 style={{backgroundColor: '#3A4C2F'}}
                             >
                                 Explore Strategic Opportunities
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Featured Products */}
-                <section id="products" className="py-20 bg-gray-50">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                Featured Products
-                            </h2>
-                            <p className="text-xl text-gray-600">
-                                Premium organic products straight from our farms
-                            </p>
-                        </div>
-
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div className="bg-white rounded-2xl overflow-hidden shadow-lg transition-transform hover:scale-105">
-                                <div className="h-64 overflow-hidden">
-                                    <div className="w-full h-full bg-gray-200 flex items-center justify-center transition-transform duration-300 hover:scale-105">
-                                        <span className="text-gray-500">Fresh Organic Vegetables</span>
-                                    </div>
-                                </div>
-                                <div className="p-6">
-                                    <h3 className="text-xl font-bold mb-2" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                        Organic Vegetables
-                                    </h3>
-                                    <p className="text-gray-600 mb-4">
-                                        Fresh, pesticide-free vegetables grown using sustainable organic methods.
-                                    </p>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-2xl font-bold" style={{color: '#7BB661'}}>
-                                            KSh 200/kg
-                                        </span>
-                                        <button
-                                            className="px-4 py-2 rounded-full text-sm transition-transform hover:scale-105"
-                                            style={{backgroundColor: '#F4C542', color: '#333333'}}
-                                        >
-                                            Add to Cart
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white rounded-2xl overflow-hidden shadow-lg transition-transform hover:scale-105">
-                                <div className="h-64 overflow-hidden">
-                                    <div className="w-full h-full bg-gray-200 flex items-center justify-center transition-transform duration-300 hover:scale-105">
-                                        <span className="text-gray-500">Fresh Organic Fruits</span>
-                                    </div>
-                                </div>
-                                <div className="p-6">
-                                    <h3 className="text-xl font-bold mb-2" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                        Organic Fruits
-                                    </h3>
-                                    <p className="text-gray-600 mb-4">
-                                        Sweet, nutritious fruits cultivated with care and organic practices.
-                                    </p>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-2xl font-bold" style={{color: '#7BB661'}}>
-                                            KSh 300/kg
-                                        </span>
-                                        <button
-                                            className="px-4 py-2 rounded-full text-sm transition-transform hover:scale-105"
-                                            style={{backgroundColor: '#F4C542', color: '#333333'}}
-                                        >
-                                            Add to Cart
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white rounded-2xl overflow-hidden shadow-lg transition-transform hover:scale-105">
-                                <div className="h-64 overflow-hidden">
-                                    <div className="w-full h-full bg-gray-200 flex items-center justify-center transition-transform duration-300 hover:scale-105">
-                                        <span className="text-gray-500">Organic Grains</span>
-                                    </div>
-                                </div>
-                                <div className="p-6">
-                                    <h3 className="text-xl font-bold mb-2" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                        Organic Grains
-                                    </h3>
-                                    <p className="text-gray-600 mb-4">
-                                        High-quality grains and cereals for nutritious, wholesome meals.
-                                    </p>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-2xl font-bold" style={{color: '#7BB661'}}>
-                                            KSh 150/kg
-                                        </span>
-                                        <button
-                                            className="px-4 py-2 rounded-full text-sm transition-transform hover:scale-105"
-                                            style={{backgroundColor: '#F4C542', color: '#333333'}}
-                                        >
-                                            Add to Cart
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="text-center mt-12">
-                            <a
-                                href="/products"
-                                className="px-8 py-4 rounded-full font-semibold transition-transform hover:scale-105 inline-block text-white"
-                                style={{backgroundColor: '#3A4C2F'}}
-                            >
-                                Shop All Products
                             </a>
                         </div>
                     </div>

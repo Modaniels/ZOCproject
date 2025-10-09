@@ -84,10 +84,12 @@ export default function Services() {
 
                 {/* Hero Section */}
                 <section className="relative min-h-96 flex items-center justify-center pt-20" style={{
-                    background: `linear-gradient(rgba(58, 76, 47, 0.8), rgba(58, 76, 47, 0.8)), linear-gradient(to right, #3A4C2F, #7BB661)`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
+                    backgroundImage: `url('/images/serviceshero.jpg')`,
+                    backgroundSize: '150%',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
                 }}>
+                    <div className="hero-overlay absolute inset-0" style={{backgroundColor: 'rgba(58, 76, 47, 0.85)'}}></div>
                     <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
                             Our <span style={{color: '#F4C542'}}>Services</span>

@@ -84,10 +84,12 @@ export default function About() {
 
                 {/* Hero Section */}
                 <section className="relative min-h-96 flex items-center justify-center pt-20" style={{
-                    background: `linear-gradient(rgba(58, 76, 47, 0.8), rgba(58, 76, 47, 0.8)), linear-gradient(to right, #3A4C2F, #7BB661)`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
+                    backgroundImage: `url('/images/aboutHero.jpg')`,
+                    backgroundSize: '150%',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
                 }}>
+                    <div className="hero-overlay absolute inset-0" style={{backgroundColor: 'rgba(58, 76, 47, 0.85)'}}></div>
                     <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
                             About <span style={{color: '#F4C542'}}>ZOC Farm</span>
@@ -116,8 +118,12 @@ export default function About() {
                                     Today, we stand as a testament to what's possible when innovation meets tradition, and when community collaboration drives agricultural excellence.
                                 </p>
                             </div>
-                            <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center shadow-lg">
-                                <span className="text-gray-500 text-lg">Company Story Image</span>
+                            <div className="rounded-2xl h-96 overflow-hidden shadow-lg">
+                                <img 
+                                    src="/images/companystoryimg.jpg" 
+                                    alt="Company Story" 
+                                    className="w-full h-full object-cover"
+                                />
                             </div>
                         </div>
                     </div>
@@ -263,11 +269,15 @@ export default function About() {
 
                         <div className="grid md:grid-cols-3 gap-8">
                             <div className="text-center">
-                                <div className="bg-gray-200 rounded-2xl h-64 flex items-center justify-center mb-6">
-                                    <span className="text-gray-500">CEO Photo</span>
+                                <div className="rounded-2xl h-64 overflow-hidden mb-6">
+                                    <img 
+                                        src="/images/zacharycto.jpg" 
+                                        alt="CEO Photo" 
+                                        className="w-full h-full object-cover"
+                                    />
                                 </div>
                                 <h3 className="text-xl font-bold mb-2" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    John Mwangi
+                                    Zachariah Mwangi
                                 </h3>
                                 <p className="text-gray-600 mb-2">Chief Executive Officer</p>
                                 <p className="text-sm text-gray-500">
