@@ -23,10 +23,6 @@ Route::get('/contact', function () {
     return Inertia::render('contact');
 })->name('contact');
 
-Route::get('/welcome', function () {
-    return Inertia::render('welcome');
-})->name('welcome');
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');

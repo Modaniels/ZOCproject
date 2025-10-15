@@ -1,4 +1,5 @@
 import { Head } from '@inertiajs/react';
+import Newsletter from '../components/Newsletter';
 
 export default function About() {
     return (
@@ -317,6 +318,9 @@ export default function About() {
                 {/* Footer */}
                 <footer className="text-white py-16" style={{backgroundColor: '#333333'}}>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        {/* Newsletter Section */}
+                        <Newsletter />
+
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <div>
                                 <div className="flex items-center space-x-3 mb-6">
