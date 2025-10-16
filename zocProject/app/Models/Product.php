@@ -151,4 +151,12 @@ class Product extends Model
         
         return 'KSh ' . number_format($this->compare_price, 0);
     }
+
+    /**
+     * Accessor for stock_quantity (maps to quantity field)
+     */
+    public function getStockQuantityAttribute(): int
+    {
+        return $this->quantity;
+    }
 }
