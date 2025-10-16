@@ -1,5 +1,6 @@
 import { Head } from '@inertiajs/react';
 import Newsletter from '../components/Newsletter';
+import Navigation from '../components/Navigation';
 
 export default function Contact() {
     return (
@@ -22,66 +23,7 @@ export default function Contact() {
                 color: '#333333'
             }}>
                 {/* Header & Navigation */}
-                <nav className="navbar fixed w-full z-30 top-0 start-0 border-b border-gray-200 bg-white">
-                    <div className="w-full px-2 py-3">
-                        <div className="flex items-center justify-between w-full">
-                            <div className="flex items-center pl-2">
-                                <a href="/" className="flex items-center space-x-3">
-                                    <div className="text-2xl font-bold" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                        ZOC Farm
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div className="flex items-center space-x-10 pr-8">
-                                <div className="hidden md:flex items-center">
-                                    <ul className="flex space-x-10 font-medium">
-                                        <li>
-                                            <a href="/" className="text-gray-700 hover:opacity-80 transition-colors duration-200 text-lg">
-                                                Home
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/about" className="text-gray-700 hover:opacity-80 transition-colors duration-200 text-lg">
-                                                About
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/services" className="text-gray-700 hover:opacity-80 transition-colors duration-200 text-lg">
-                                                Services
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/products" className="text-gray-700 hover:opacity-80 transition-colors duration-200 text-lg">
-                                                Products
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/contact" className="font-semibold hover:opacity-80 transition-colors duration-200 text-lg" style={{color: '#3A4C2F'}}>
-                                                Contact
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <button className="relative p-2 transition-colors duration-200" style={{color: '#3A4C2F'}}>
-                                    <i className="fas fa-shopping-cart text-xl"></i>
-                                    <span className="absolute -top-1 -right-1 text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium" 
-                                          style={{backgroundColor: '#F4C542', color: '#333333'}}>
-                                        0
-                                    </span>
-                                </button>
-
-                                <button type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
-                                    <span className="sr-only">Open main menu</span>
-                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 17 14">
-                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
+                <Navigation />
 
                 {/* Hero Section */}
                 <section className="relative min-h-96 flex items-center justify-center pt-20" style={{

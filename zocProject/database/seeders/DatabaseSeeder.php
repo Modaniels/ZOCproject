@@ -14,8 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // Create test user
         User::firstOrCreate(
             ['email' => 'test@example.com'],
             [
@@ -24,5 +23,21 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
             ]
         );
+
+        // Create admin user
+        User::firstOrCreate(
+            ['email' => 'admin@zocfarm.com'],
+            [
+                'name' => 'ZOC Farm Admin',
+                'password' => Hash::make('admin123'),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        // Seed categories and products
+        $this->call([
+            CategorySeeder::class,
+            ProductSeeder::class,
+        ]);
     }
 }
