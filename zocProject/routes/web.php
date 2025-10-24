@@ -43,6 +43,7 @@ Route::prefix('checkout')->name('checkout.')->group(function () {
     Route::post('/process', [CheckoutController::class, 'process'])->name('process');
     Route::get('/success', [CheckoutController::class, 'success'])->name('success');
     Route::post('/mpesa/callback', [CheckoutController::class, 'mpesaCallback'])->name('mpesa.callback');
+    Route::post('/payment-status', [CheckoutController::class, 'checkPaymentStatus'])->name('payment.status');
 });
 
 // Order tracking routes (for guests)

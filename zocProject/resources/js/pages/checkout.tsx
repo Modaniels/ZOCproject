@@ -42,6 +42,10 @@ interface Props {
 export default function Checkout({ cartItems, total, userDetails }: Props) {
     const [isProcessing, setIsProcessing] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState('mpesa');
+    const [paymentStatus, setPaymentStatus] = useState<'idle' | 'pending' | 'checking' | 'success' | 'failed'>('idle');
+    const [currentOrder, setCurrentOrder] = useState<any>(null);
+    const [statusMessage, setStatusMessage] = useState('');
+    const [timeRemaining, setTimeRemaining] = useState(120); // 2 minutes in seconds
     const [formData, setFormData] = useState({
         firstName: userDetails?.firstName || '',
         lastName: userDetails?.lastName || '',
@@ -52,6 +56,23 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
         county: userDetails?.county || '',
         deliveryNotes: ''
     });
+
+    // Countdown timer effect
+    React.useEffect(() => {
+        if (paymentStatus === 'checking' && timeRemaining > 0) {
+            const timer = setTimeout(() => {
+                setTimeRemaining(prev => prev - 1);
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [paymentStatus, timeRemaining]);
+
+    // Format time remaining
+    const formatTime = (seconds: number) => {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+    };
 
     // Get CSRF token safely
     const getCsrfToken = () => {
@@ -95,12 +116,80 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
         return true;
     };
 
+    // Function to check payment status
+    const checkPaymentStatus = async (orderId: number) => {
+        try {
+            const response = await fetch('/checkout/payment-status', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': getCsrfToken(),
+                },
+                body: JSON.stringify({ order_id: orderId }),
+            });
+
+            const data = await response.json();
+            
+            if (data.success && data.status === 'paid') {
+                setPaymentStatus('success');
+                setStatusMessage('Payment successful! Your order has been confirmed.');
+                setTimeout(() => {
+                    router.visit(`/checkout/success?order_number=${currentOrder?.order_number}&email=${formData.email}`);
+                }, 2000);
+                return true;
+            } else if (data.status === 'failed') {
+                setPaymentStatus('failed');
+                setStatusMessage('Payment failed. Please try again.');
+                return false;
+            } else {
+                // Still pending
+                return false;
+            }
+        } catch (error) {
+            console.error('Error checking payment status:', error);
+            return false;
+        }
+    };
+
+    // Polling function for M-Pesa payment status
+    const pollPaymentStatus = (orderId: number, maxAttempts = 40) => {
+        let attempts = 0;
+        
+        const poll = async () => {
+            attempts++;
+            const isComplete = await checkPaymentStatus(orderId);
+            
+            if (isComplete || attempts >= maxAttempts) {
+                if (!isComplete && attempts >= maxAttempts) {
+                    setPaymentStatus('failed');
+                    setStatusMessage('Payment timeout. Please try again or choose a different payment method.');
+                }
+                return;
+            }
+            
+            // Update status message every few attempts to keep user informed
+            if (attempts === 5) {
+                setStatusMessage('Still waiting for payment confirmation. Please ensure you entered your M-Pesa PIN.');
+            } else if (attempts === 15) {
+                setStatusMessage('Payment is taking longer than expected. Please complete the transaction on your phone.');
+            } else if (attempts === 25) {
+                setStatusMessage('Still processing... If you didn\'t receive the prompt, the transaction may have timed out.');
+            }
+            
+            // Continue polling every 3 seconds
+            setTimeout(poll, 3000);
+        };
+        
+        poll();
+    };
+
     const handleCheckout = async (e: React.FormEvent) => {
         e.preventDefault();
         
         if (!validateForm()) return;
 
         setIsProcessing(true);
+        setPaymentStatus('pending');
 
         try {
             const response = await fetch('/checkout/process', {
@@ -120,25 +209,34 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
             const data = await response.json();
 
             if (response.ok) {
-                // Simulate M-Pesa checkout process
+                setCurrentOrder(data);
+                
                 if (paymentMethod === 'mpesa') {
-                    alert(`M-Pesa payment request sent to ${formData.phone}. Please check your phone to complete the payment.`);
+                    setStatusMessage(`M-Pesa payment request sent to ${formData.phone}. Please check your phone and enter your M-Pesa PIN to complete the payment.`);
+                    setPaymentStatus('checking');
                     
-                    // Simulate a delay for M-Pesa processing
+                    // Start polling for payment status after a longer delay to give user time to enter PIN
                     setTimeout(() => {
-                        alert('Payment successful! Your order has been placed.');
-                        router.visit('/checkout/success');
-                    }, 3000);
+                        setStatusMessage('Waiting for payment confirmation. Please complete the transaction on your phone.');
+                        pollPaymentStatus(data.order_id);
+                    }, 10000); // Wait 10 seconds before starting to poll
+                    
                 } else {
-                    alert('Order placed successfully!');
-                    router.visit('/checkout/success');
+                    // Cash on delivery
+                    setPaymentStatus('success');
+                    setStatusMessage('Order placed successfully! You will pay upon delivery.');
+                    setTimeout(() => {
+                        router.visit(`/checkout/success?order_number=${data.order_number}&email=${formData.email}`);
+                    }, 2000);
                 }
             } else {
-                alert(data.message || 'Error processing checkout');
+                setPaymentStatus('failed');
+                setStatusMessage(data.message || 'Error processing checkout');
             }
         } catch (error) {
             console.error('Checkout error:', error);
-            alert('Error processing checkout. Please try again.');
+            setPaymentStatus('failed');
+            setStatusMessage('Error processing checkout. Please try again.');
         } finally {
             setIsProcessing(false);
         }
@@ -494,18 +592,99 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                         </div>
                                     </div>
 
+                                    {/* Payment Status Display */}
+                                    {paymentStatus !== 'idle' && (
+                                        <div className="mb-8 p-6 rounded-lg border-2" style={{
+                                            backgroundColor: paymentStatus === 'success' ? '#F0F9FF' : 
+                                                           paymentStatus === 'failed' ? '#FEF2F2' : '#FFF7ED',
+                                            borderColor: paymentStatus === 'success' ? '#059669' : 
+                                                        paymentStatus === 'failed' ? '#DC2626' : '#F59E0B'
+                                        }}>
+                                            <div className="flex items-center">
+                                                {paymentStatus === 'pending' && (
+                                                    <div className="flex items-center text-orange-600">
+                                                        <i className="fas fa-clock-o text-2xl mr-3"></i>
+                                                        <span className="font-semibold">Processing Payment...</span>
+                                                    </div>
+                                                )}
+                                                {paymentStatus === 'checking' && (
+                                                    <div className="flex items-center text-blue-600">
+                                                        <i className="fas fa-spinner fa-spin text-2xl mr-3"></i>
+                                                        <span className="font-semibold">Checking Payment Status...</span>
+                                                    </div>
+                                                )}
+                                                {paymentStatus === 'success' && (
+                                                    <div className="flex items-center text-green-600">
+                                                        <i className="fas fa-check-circle text-2xl mr-3"></i>
+                                                        <span className="font-semibold">Payment Successful!</span>
+                                                    </div>
+                                                )}
+                                                {paymentStatus === 'failed' && (
+                                                    <div className="flex items-center text-red-600">
+                                                        <i className="fas fa-times-circle text-2xl mr-3"></i>
+                                                        <span className="font-semibold">Payment Failed</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            {statusMessage && (
+                                                <p className="mt-3 text-sm" style={{
+                                                    color: paymentStatus === 'success' ? '#059669' : 
+                                                           paymentStatus === 'failed' ? '#DC2626' : '#F59E0B'
+                                                }}>
+                                                    {statusMessage}
+                                                </p>
+                                            )}
+                                            {paymentStatus === 'checking' && (
+                                                <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                                    <h4 className="font-semibold text-blue-800 mb-3 flex items-center">
+                                                        📱 Complete Payment on Your Phone
+                                                        <span className="ml-2 inline-flex items-center">
+                                                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                                                        </span>
+                                                    </h4>
+                                                    <div className="bg-white p-3 rounded border border-blue-100 mb-3">
+                                                        <p className="text-sm text-blue-800 font-medium">
+                                                            💡 Follow these steps to complete your payment:
+                                                        </p>
+                                                    </div>
+                                                    <ol className="text-sm text-blue-700 space-y-2">
+                                                        <li className="flex items-start">
+                                                            <span className="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">1</span>
+                                                            Check your phone ({formData.phone}) for M-Pesa payment prompt
+                                                        </li>
+                                                        <li className="flex items-start">
+                                                            <span className="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">2</span>
+                                                            Enter your M-Pesa PIN to authorize the payment
+                                                        </li>
+                                                        <li className="flex items-start">
+                                                            <span className="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">3</span>
+                                                            Wait for SMS confirmation from M-Pesa
+                                                        </li>
+                                                        <li className="flex items-start">
+                                                            <span className="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">4</span>
+                                                            This page will automatically update once payment is confirmed
+                                                        </li>
+                                                    </ol>
+                                                    <div className="mt-3 p-2 bg-blue-100 rounded text-xs text-blue-600">
+                                                        ⏱️ Time remaining: {formatTime(timeRemaining)} | Waiting for payment confirmation...
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+
                                     <button
                                         type="submit"
-                                        disabled={isProcessing}
+                                        disabled={isProcessing || paymentStatus === 'checking'}
                                         className={`w-full py-4 px-6 rounded-lg font-semibold text-white text-lg transition duration-200 ${
-                                            isProcessing ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90'
+                                            (isProcessing || paymentStatus === 'checking') ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90'
                                         }`}
                                         style={{backgroundColor: '#3A4C2F'}}
                                     >
-                                        {isProcessing ? (
+                                        {isProcessing || paymentStatus === 'checking' ? (
                                             <span className="flex items-center justify-center">
                                                 <i className="fas fa-spinner fa-spin mr-2"></i>
-                                                Processing...
+                                                {paymentStatus === 'checking' ? 'Waiting for Payment...' : 'Processing...'}
                                             </span>
                                         ) : (
                                             <span className="flex items-center justify-center">

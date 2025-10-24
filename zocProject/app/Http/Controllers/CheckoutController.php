@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Services\MpesaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,12 @@ use Inertia\Inertia;
 
 class CheckoutController extends Controller
 {
+    protected $mpesaService;
+
+    public function __construct(MpesaService $mpesaService)
+    {
+        $this->mpesaService = $mpesaService;
+    }
     public function index()
     {
         // Get cart items for authenticated users or session-based cart
@@ -142,7 +149,7 @@ class CheckoutController extends Controller
                 'shipping_postal_code' => '00000',
                 'shipping_country' => 'Kenya',
                 'payment_method' => $validated['paymentMethod'],
-                'payment_status' => $validated['paymentMethod'] === 'mpesa' ? 'pending' : 'pending',
+                'payment_status' => 'pending',
                 'notes' => $validated['deliveryNotes'],
             ]);
 
@@ -159,40 +166,75 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            // Simulate M-Pesa payment process
+            // Process payment based on method
             if ($validated['paymentMethod'] === 'mpesa') {
-                // In a real implementation, you would:
-                // 1. Call M-Pesa STK Push API
-                // 2. Get transaction ID
-                // 3. Store payment reference
-                // 4. Set up webhook to handle payment confirmation
-                
-                Log::info('M-Pesa payment simulation', [
-                    'order_id' => $order->id,
-                    'phone' => $validated['phone'],
-                    'amount' => $validated['total'],
+                // Initiate M-Pesa STK Push
+                $mpesaResponse = $this->mpesaService->stkPush(
+                    $validated['phone'],
+                    $validated['total'],
+                    $order->order_number,
+                    'Payment for Order ' . $order->order_number
+                );
+
+                if ($mpesaResponse['success']) {
+                    // Update order with M-Pesa details
+                    $order->update([
+                        'mpesa_checkout_request_id' => $mpesaResponse['checkout_request_id'],
+                        'mpesa_merchant_request_id' => $mpesaResponse['merchant_request_id'],
+                        'mpesa_phone_number' => $validated['phone'],
+                        'mpesa_response' => $mpesaResponse
+                    ]);
+
+                    DB::commit();
+
+                    return response()->json([
+                        'success' => true,
+                        'message' => $mpesaResponse['message'],
+                        'order_number' => $order->order_number,
+                        'order_id' => $order->id,
+                        'checkout_request_id' => $mpesaResponse['checkout_request_id'],
+                        'payment_method' => 'mpesa'
+                    ]);
+                } else {
+                    DB::rollBack();
+                    Log::warning('M-Pesa STK Push failed', [
+                        'response' => $mpesaResponse,
+                        'order_id' => $order->id
+                    ]);
+                    
+                    // Check if it's a credential issue
+                    if (isset($mpesaResponse['response']['errorMessage']) && 
+                        str_contains($mpesaResponse['response']['errorMessage'], 'Access Token')) {
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'M-Pesa service is currently unavailable. Please try again later or use Cash on Delivery.',
+                        ], 400);
+                    }
+                    
+                    return response()->json([
+                        'success' => false,
+                        'message' => $mpesaResponse['message'],
+                    ], 400);
+                }
+            } else {
+                // Cash on delivery
+                $order->update([
+                    'payment_status' => 'pending',
                 ]);
 
-                // Simulate successful payment after a delay
-                // In real implementation, this would be handled by M-Pesa callback
-                $order->update([
-                    'payment_status' => 'paid',
-                    'payment_id' => 'MPESA_' . time(),
-                    'payment_date' => now(),
+                // Clear the cart
+                $cartItems->each->delete();
+
+                DB::commit();
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Order placed successfully! You will pay upon delivery.',
+                    'order_number' => $order->order_number,
+                    'order_id' => $order->id,
+                    'payment_method' => 'cod'
                 ]);
             }
-
-            // Clear the cart
-            $cartItems->each->delete();
-
-            DB::commit();
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Order placed successfully!',
-                'order_number' => $order->order_number,
-                'order_id' => $order->id,
-            ]);
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -200,6 +242,7 @@ class CheckoutController extends Controller
                 'error' => $e->getMessage(),
                 'user_id' => Auth::id(),
                 'session_id' => session()->getId(),
+                'trace' => $e->getTraceAsString()
             ]);
 
             return response()->json([
@@ -220,52 +263,168 @@ class CheckoutController extends Controller
         ]);
     }
 
-    // Simulate M-Pesa callback (in real implementation, this would be called by Safaricom)
+    /**
+     * Handle M-Pesa callback from Safaricom
+     */
     public function mpesaCallback(Request $request)
     {
-        // This is where you would handle the M-Pesa payment callback
-        // For now, it's just a placeholder for future M-Pesa integration
-        
-        $validated = $request->validate([
-            'order_id' => 'required|exists:orders,id',
-            'payment_reference' => 'required|string',
-            'status' => 'required|in:success,failed',
-        ]);
+        Log::info('M-Pesa callback received', $request->all());
 
         try {
-            $order = Order::findOrFail($validated['order_id']);
+            $callbackData = $request->all();
+            $result = $this->mpesaService->processCallback($callbackData);
 
-            if ($validated['status'] === 'success') {
-                $order->update([
-                    'payment_status' => 'paid',
-                    'payment_id' => $validated['payment_reference'],
-                    'payment_date' => now(),
-                ]);
+            if ($result && $result['success']) {
+                // Find order by checkout request ID
+                $order = Order::where('mpesa_checkout_request_id', $result['checkout_request_id'])->first();
 
-                Log::info('M-Pesa payment successful', [
-                    'order_id' => $order->id,
-                    'payment_reference' => $validated['payment_reference'],
-                ]);
-            } else {
-                $order->update([
-                    'payment_status' => 'failed',
-                ]);
+                if ($order) {
+                    $order->update([
+                        'payment_status' => 'paid',
+                        'payment_id' => $result['mpesa_receipt_number'],
+                        'payment_date' => now(),
+                        'mpesa_receipt_number' => $result['mpesa_receipt_number'],
+                        'mpesa_transaction_date' => $result['transaction_date'],
+                        'status' => 'confirmed'
+                    ]);
 
-                Log::warning('M-Pesa payment failed', [
-                    'order_id' => $order->id,
-                    'payment_reference' => $validated['payment_reference'],
-                ]);
+                    // Clear the cart after successful payment
+                    if ($order->user_id) {
+                        Cart::where('user_id', $order->user_id)->delete();
+                    }
+
+                    Log::info('M-Pesa payment successful', [
+                        'order_id' => $order->id,
+                        'order_number' => $order->order_number,
+                        'mpesa_receipt' => $result['mpesa_receipt_number'],
+                    ]);
+                } else {
+                    Log::warning('Order not found for M-Pesa callback', [
+                        'checkout_request_id' => $result['checkout_request_id']
+                    ]);
+                }
+            } else if ($result && !$result['success']) {
+                // Payment failed
+                $order = Order::where('mpesa_checkout_request_id', $result['checkout_request_id'])->first();
+                
+                if ($order) {
+                    $order->update([
+                        'payment_status' => 'failed',
+                        'status' => 'cancelled'
+                    ]);
+
+                    Log::warning('M-Pesa payment failed', [
+                        'order_id' => $order->id,
+                        'result_code' => $result['result_code'],
+                        'result_desc' => $result['result_desc']
+                    ]);
+                }
             }
 
-            return response()->json(['success' => true]);
+            // Always return success to M-Pesa
+            return response()->json([
+                'ResultCode' => 0,
+                'ResultDesc' => 'Accepted'
+            ]);
 
         } catch (\Exception $e) {
             Log::error('M-Pesa callback processing failed', [
                 'error' => $e->getMessage(),
                 'request_data' => $request->all(),
+                'trace' => $e->getTraceAsString()
             ]);
 
-            return response()->json(['success' => false], 500);
+            // Still return success to prevent M-Pesa retries
+            return response()->json([
+                'ResultCode' => 0,
+                'ResultDesc' => 'Accepted'
+            ]);
+        }
+    }
+
+    /**
+     * Check payment status for M-Pesa orders
+     */
+    public function checkPaymentStatus(Request $request)
+    {
+        $validated = $request->validate([
+            'order_id' => 'required|exists:orders,id',
+        ]);
+
+        try {
+            $order = Order::findOrFail($validated['order_id']);
+
+            // If payment is already completed, return success
+            if ($order->payment_status === 'paid') {
+                return response()->json([
+                    'success' => true,
+                    'status' => 'paid',
+                    'message' => 'Payment successful',
+                    'order' => [
+                        'order_number' => $order->order_number,
+                        'payment_status' => $order->payment_status,
+                        'mpesa_receipt_number' => $order->mpesa_receipt_number,
+                    ]
+                ]);
+            }
+
+            // If payment failed, return failure
+            if ($order->payment_status === 'failed') {
+                return response()->json([
+                    'success' => false,
+                    'status' => 'failed',
+                    'message' => 'Payment failed. Please try again.',
+                ]);
+            }
+
+            // If M-Pesa order and still pending, query M-Pesa for status
+            if ($order->payment_method === 'mpesa' && $order->mpesa_checkout_request_id) {
+                $mpesaStatus = $this->mpesaService->stkQuery($order->mpesa_checkout_request_id);
+
+                if ($mpesaStatus['success'] && isset($mpesaStatus['data']['ResponseCode'])) {
+                    $responseCode = $mpesaStatus['data']['ResponseCode'];
+                    
+                    if ($responseCode == '0') {
+                        // Payment successful
+                        $order->update([
+                            'payment_status' => 'paid',
+                            'payment_date' => now(),
+                            'status' => 'confirmed'
+                        ]);
+
+                        return response()->json([
+                            'success' => true,
+                            'status' => 'paid',
+                            'message' => 'Payment successful',
+                        ]);
+                    } else {
+                        // Payment still pending or failed
+                        return response()->json([
+                            'success' => false,
+                            'status' => 'pending',
+                            'message' => 'Payment is still pending. Please complete the payment on your phone.',
+                        ]);
+                    }
+                }
+            }
+
+            // Default pending response
+            return response()->json([
+                'success' => false,
+                'status' => 'pending',
+                'message' => 'Payment is still pending.',
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Payment status check failed', [
+                'error' => $e->getMessage(),
+                'order_id' => $validated['order_id']
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to check payment status',
+            ], 500);
         }
     }
 }

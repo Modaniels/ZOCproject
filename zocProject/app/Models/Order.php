@@ -41,6 +41,12 @@ class Order extends Model
         'payment_status',
         'payment_id',
         'payment_date',
+        'mpesa_checkout_request_id',
+        'mpesa_merchant_request_id',
+        'mpesa_receipt_number',
+        'mpesa_transaction_date',
+        'mpesa_phone_number',
+        'mpesa_response',
         'notes',
         'shipped_at',
         'delivered_at'
@@ -54,6 +60,7 @@ class Order extends Model
         'payment_date' => 'datetime',
         'shipped_at' => 'datetime',
         'delivered_at' => 'datetime',
+        'mpesa_response' => 'array',
     ];
 
     /**
