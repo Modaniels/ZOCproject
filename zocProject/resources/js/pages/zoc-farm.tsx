@@ -1,8 +1,37 @@
 import { Head } from '@inertiajs/react';
+import { useState, useEffect } from 'react';
 import Newsletter from '../components/Newsletter';
 import Navigation from '../components/Navigation';
 
 export default function ZOCFarm() {
+    // Array of hero images
+    const heroImages = [
+        '/images/hero/WhatsApp Image 2025-10-24 at 11.36.01_1c0b2344.jpg',
+        '/images/hero/WhatsApp Image 2025-10-24 at 11.36.01_27093596.jpg',
+        '/images/hero/WhatsApp Image 2025-10-24 at 11.36.01_c5d20757.jpg',
+        '/images/hero/WhatsApp Image 2025-10-24 at 11.36.02_017adedd.jpg',
+        '/images/hero/WhatsApp Image 2025-10-24 at 11.36.02_7841d8ad.jpg',
+        '/images/hero/WhatsApp Image 2025-10-24 at 11.36.02_9214911d.jpg',
+        '/images/hero/WhatsApp Image 2025-10-24 at 11.36.02_c5428d84.jpg',
+        '/images/hero/WhatsApp Image 2025-10-24 at 11.36.03_98660ba5.jpg',
+        '/images/hero/WhatsApp Image 2025-10-24 at 11.36.03_d75f4050.jpg',
+        '/images/hero/WhatsApp Image 2025-10-24 at 11.36.03_dc69d40a.jpg',
+        '/images/hero/WhatsApp Image 2025-10-24 at 11.36.04_c802ffff.jpg'
+    ];
+
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    // Simple auto-slide effect - 5 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => 
+                prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
+            );
+        }, 5000); // 5 seconds
+
+        return () => clearInterval(interval);
+    }, [heroImages.length]);
+
     return (
         <>
             <Head title="ZOC Farm - Transforming Land, Growing Futures">
@@ -16,6 +45,62 @@ export default function ZOCFarm() {
                     rel="stylesheet"
                     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
                 />
+                <style>
+                    {`
+                        @keyframes fadeInUp {
+                            from {
+                                opacity: 0;
+                                transform: translateY(30px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+                        
+                        .animate-fade-in-up {
+                            animation: fadeInUp 1s ease-out forwards;
+                            opacity: 0;
+                        }
+                        
+                        @keyframes slideIn {
+                            from {
+                                transform: scale(1.1);
+                                opacity: 0;
+                            }
+                            to {
+                                transform: scale(1);
+                                opacity: 1;
+                            }
+                        }
+                        
+                        .hero-image-slide {
+                            animation: slideIn 1s ease-out;
+                        }
+                        
+                        @keyframes pulse {
+                            0%, 100% {
+                                transform: scale(1);
+                            }
+                            50% {
+                                transform: scale(1.05);
+                            }
+                        }
+                        
+                        .animate-pulse-subtle {
+                            animation: pulse 3s ease-in-out infinite;
+                        }
+                        
+                        @keyframes smoothZoom {
+                            0% {
+                                transform: scale(1);
+                            }
+                            100% {
+                                transform: scale(1.08);
+                            }
+                        }
+                    `}
+                </style>
             </Head>
             <div className="min-h-screen bg-cream-white font-body text-charcoal" style={{
                 fontFamily: 'Inter, sans-serif',
@@ -28,35 +113,50 @@ export default function ZOCFarm() {
                 {/* Hero Section */}
                 <section
                     id="home"
-                    className="relative min-h-screen flex items-center justify-center"
-                    style={{
-                        backgroundImage: `url('/images/homeHero.jpg')`,
-                        backgroundSize: '150%',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                    }}
+                    className="relative min-h-screen flex items-center justify-center overflow-hidden"
                 >
+                    {/* Background Images with Smooth Zoom Animation */}
+                    <div className="absolute inset-0">
+                        {heroImages.map((image, index) => (
+                            <div
+                                key={index}
+                                className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
+                                    index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                                }`}
+                                style={{
+                                    backgroundImage: `url('${image}')`,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    backgroundRepeat: 'no-repeat',
+                                    animation: index === currentImageIndex ? 'smoothZoom 5s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none'
+                                }}
+                            />
+                        ))}
+                    </div>
+                    
+                    {/* Overlay */}
                     <div className="hero-overlay absolute inset-0" style={{backgroundColor: 'rgba(58, 76, 47, 0.85)'}}></div>
+                    
+                    {/* Content */}
                     <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-up" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
                             Inspiring the <br />
                             <span style={{color: '#F4C542'}}>Agricultural Value Chain</span>
                         </h1>
-                        <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto leading-relaxed">
+                        <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style={{animationDelay: '0.2s'}}>
                             Uniting farmers, investors, contractors and consumers under a single transparent platform. We specialize in organic food production from sourcing inputs to delivering retail-ready products.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{animationDelay: '0.4s'}}>
                             <a
                                 href="/products"
-                                className="px-8 py-4 rounded-full font-semibold text-lg transition-transform hover:scale-105 inline-block"
+                                className="px-8 py-4 rounded-full font-semibold text-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-400/30 inline-block transform hover:-translate-y-1"
                                 style={{backgroundColor: '#F4C542', color: '#333333'}}
                             >
                                 Shop Now
                             </a>
                             <a
                                 href="/contact"
-                                className="px-8 py-4 rounded-full font-semibold text-lg transition-transform hover:scale-105 inline-block border-2 border-white text-white hover:bg-white"
-                                style={{'--hover-color': '#3A4C2F'} as React.CSSProperties}
+                                className="px-8 py-4 rounded-full font-semibold text-lg transition-all duration-500 hover:scale-105 hover:bg-white hover:text-gray-800 hover:shadow-2xl hover:shadow-white/30 inline-block border-2 border-white text-white transform hover:-translate-y-1"
                             >
                                 Partner With Us
                             </a>
@@ -64,7 +164,7 @@ export default function ZOCFarm() {
                     </div>
 
                     {/* Scroll indicator */}
-                    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+                    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
                         <div className="animate-bounce">
                             <i className="fas fa-chevron-down text-white text-2xl"></i>
                         </div>

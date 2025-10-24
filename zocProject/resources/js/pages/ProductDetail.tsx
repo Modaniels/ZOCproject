@@ -86,17 +86,26 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
     return (
         <>
             <Head title={`${product.name} - ZOC Farm`}>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+                    rel="stylesheet"
+                />
                 <meta name="csrf-token" content={document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')} />
                 <meta name="description" content={product.short_description} />
             </Head>
 
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen" style={{
+                fontFamily: 'Inter, sans-serif',
+                backgroundColor: '#FDF8E3',
+            }}>
                 {/* Header */}
                 <nav className="bg-white shadow-sm border-b">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex justify-between items-center h-16">
                             <div className="flex items-center">
-                                <Link href="/" className="text-2xl font-bold text-green-800">
+                                <Link href="/" className="text-2xl font-bold" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
                                     ZOC Farm
                                 </Link>
                             </div>
@@ -105,7 +114,7 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                                 <Link href="/" className="text-gray-700 hover:text-green-800">Home</Link>
                                 <Link href="/about" className="text-gray-700 hover:text-green-800">About</Link>
                                 <Link href="/services" className="text-gray-700 hover:text-green-800">Services</Link>
-                                <Link href="/products" className="text-green-800 font-semibold">Products</Link>
+                                <Link href="/products" className="font-semibold" style={{color: '#3A4C2F'}}>Products</Link>
                                 <Link href="/contact" className="text-gray-700 hover:text-green-800">Contact</Link>
                             </div>
 
@@ -189,7 +198,7 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                                 </div>
 
                                 {/* Product name */}
-                                <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
+                                <h1 className="text-3xl font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>{product.name}</h1>
 
                                 {/* Product rating (placeholder) */}
                                 <div className="flex items-center mb-4">
@@ -207,7 +216,7 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                                 {/* Price */}
                                 <div className="mb-6">
                                     <div className="flex items-center space-x-3">
-                                        <span className="text-3xl font-bold text-green-600">
+                                        <span className="text-3xl font-bold" style={{color: '#F4C542'}}>
                                             {product.formatted_price}
                                         </span>
                                         {product.formatted_compare_price && (
@@ -290,7 +299,10 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                                     <button
                                         onClick={addToCart}
                                         disabled={product.quantity === 0 || isAddingToCart}
-                                        className="w-full bg-green-600 text-white py-3 px-6 rounded-md hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition duration-200 font-medium"
+                                        className="w-full py-3 px-6 rounded-md transition duration-200 font-medium"
+                                        style={{backgroundColor: '#3A4C2F', color: 'white'}}
+                                        onMouseEnter={(e) => e.target.style.backgroundColor = '#2D3B22'}
+                                        onMouseLeave={(e) => e.target.style.backgroundColor = '#3A4C2F'}
                                     >
                                         {isAddingToCart ? 'Adding...' : 'Add to Cart'}
                                     </button>
@@ -321,7 +333,7 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
 
                             {/* Product Description */}
                             <div className="bg-white rounded-lg shadow p-6 mt-6">
-                                <h3 className="text-lg font-semibold text-gray-900 mb-4">Product Description</h3>
+                                <h3 className="text-lg font-semibold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>Product Description</h3>
                                 <div className="prose prose-sm text-gray-700">
                                     <p>{product.description}</p>
                                 </div>
@@ -332,7 +344,7 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                     {/* Related Products */}
                     {relatedProducts.length > 0 && (
                         <div className="mt-16">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-8">Related Products</h2>
+                            <h2 className="text-2xl font-bold mb-8" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>Related Products</h2>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                                 {relatedProducts.map((relatedProduct) => (
                                     <div key={relatedProduct.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">

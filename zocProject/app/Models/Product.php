@@ -42,6 +42,11 @@ class Product extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     */
+    protected $appends = ['formatted_price', 'formatted_compare_price', 'stock_quantity'];
+
+    /**
      * Get the category this product belongs to
      */
     public function category(): BelongsTo

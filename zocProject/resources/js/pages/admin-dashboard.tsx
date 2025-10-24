@@ -12,7 +12,9 @@ import {
     MagnifyingGlassIcon,
     FunnelIcon,
     ArrowUpIcon,
-    ArrowDownIcon
+    ArrowDownIcon,
+    Bars3Icon,
+    XMarkIcon
 } from '@heroicons/react/24/outline';
 
 interface Product {
@@ -76,6 +78,7 @@ export default function AdminDashboard({ stats, recent_orders, recent_products, 
     const [searchTerm, setSearchTerm] = useState('');
     const [sortBy, setSortBy] = useState('created_at');
     const [sortOrder, setSortOrder] = useState('desc');
+    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     const formatPrice = (price: number) => {
         return `KSh ${price.toLocaleString()}`;
@@ -137,7 +140,13 @@ export default function AdminDashboard({ stats, recent_orders, recent_products, 
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex items-center">
-                        <Link href="/admin" className="text-2xl font-bold" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                        <button
+                            onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+                            className="lg:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 mr-3"
+                        >
+                            <Bars3Icon className="w-6 h-6" />
+                        </button>
+                        <Link href="/admin" className="text-xl sm:text-2xl font-bold" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
                             ZOC Farm Admin
                         </Link>
                     </div>
@@ -155,54 +164,125 @@ export default function AdminDashboard({ stats, recent_orders, recent_products, 
     );
 
     const Sidebar = () => (
-        <div className="w-64 bg-white shadow-sm min-h-screen">
-            <div className="p-6">
-                <nav className="space-y-2">
-                    <button
-                        onClick={() => setActiveTab('overview')}
-                        className={`w-full flex items-center px-4 py-2 text-left text-sm font-medium rounded-lg transition-colors ${
-                            activeTab === 'overview' 
-                                ? 'text-white' 
-                                : 'text-gray-700 hover:bg-gray-100'
-                        }`}
-                        style={activeTab === 'overview' ? {backgroundColor: '#3A4C2F'} : {}}
-                    >
-                        <ChartBarIcon className="w-5 h-5 mr-3" />
-                        Overview
-                    </button>
-                    <Link
-                        href="/admin/products"
-                        className="w-full flex items-center px-4 py-2 text-left text-sm font-medium rounded-lg transition-colors text-gray-700 hover:bg-gray-100"
-                    >
-                        <ShoppingBagIcon className="w-5 h-5 mr-3" />
-                        Products
-                    </Link>
-                    <Link
-                        href="/admin/orders"
-                        className="w-full flex items-center px-4 py-2 text-left text-sm font-medium rounded-lg transition-colors text-gray-700 hover:bg-gray-100"
-                    >
-                        <CurrencyDollarIcon className="w-5 h-5 mr-3" />
-                        Orders
-                    </Link>
-                    <button
-                        onClick={() => setActiveTab('customers')}
-                        className={`w-full flex items-center px-4 py-2 text-left text-sm font-medium rounded-lg transition-colors ${
-                            activeTab === 'customers' 
-                                ? 'text-white' 
-                                : 'text-gray-700 hover:bg-gray-100'
-                        }`}
-                        style={activeTab === 'customers' ? {backgroundColor: '#3A4C2F'} : {}}
-                    >
-                        <UserGroupIcon className="w-5 h-5 mr-3" />
-                        Customers
-                    </button>
-                </nav>
+        <>
+            {/* Mobile Sidebar Overlay */}
+            {isMobileSidebarOpen && (
+                <div className="fixed inset-0 z-50 lg:hidden">
+                    <div className="fixed inset-0 bg-gray-600 bg-opacity-75" onClick={() => setIsMobileSidebarOpen(false)}></div>
+                    <div className="relative flex flex-col w-64 bg-white shadow-xl">
+                        <div className="flex items-center justify-between p-4 border-b">
+                            <span className="text-lg font-semibold text-gray-900">Menu</span>
+                            <button
+                                onClick={() => setIsMobileSidebarOpen(false)}
+                                className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                            >
+                                <XMarkIcon className="w-6 h-6" />
+                            </button>
+                        </div>
+                        <div className="flex-1 p-6">
+                            <nav className="space-y-2">
+                                <button
+                                    onClick={() => {
+                                        setActiveTab('overview');
+                                        setIsMobileSidebarOpen(false);
+                                    }}
+                                    className={`w-full flex items-center px-4 py-2 text-left text-sm font-medium rounded-lg transition-colors ${
+                                        activeTab === 'overview' 
+                                            ? 'text-white' 
+                                            : 'text-gray-700 hover:bg-gray-100'
+                                    }`}
+                                    style={activeTab === 'overview' ? {backgroundColor: '#3A4C2F'} : {}}
+                                >
+                                    <ChartBarIcon className="w-5 h-5 mr-3" />
+                                    Overview
+                                </button>
+                                <Link
+                                    href="/admin/products"
+                                    className="w-full flex items-center px-4 py-2 text-left text-sm font-medium rounded-lg transition-colors text-gray-700 hover:bg-gray-100"
+                                    onClick={() => setIsMobileSidebarOpen(false)}
+                                >
+                                    <ShoppingBagIcon className="w-5 h-5 mr-3" />
+                                    Products
+                                </Link>
+                                <Link
+                                    href="/admin/orders"
+                                    className="w-full flex items-center px-4 py-2 text-left text-sm font-medium rounded-lg transition-colors text-gray-700 hover:bg-gray-100"
+                                    onClick={() => setIsMobileSidebarOpen(false)}
+                                >
+                                    <CurrencyDollarIcon className="w-5 h-5 mr-3" />
+                                    Orders
+                                </Link>
+                                <button
+                                    onClick={() => {
+                                        setActiveTab('customers');
+                                        setIsMobileSidebarOpen(false);
+                                    }}
+                                    className={`w-full flex items-center px-4 py-2 text-left text-sm font-medium rounded-lg transition-colors ${
+                                        activeTab === 'customers' 
+                                            ? 'text-white' 
+                                            : 'text-gray-700 hover:bg-gray-100'
+                                    }`}
+                                    style={activeTab === 'customers' ? {backgroundColor: '#3A4C2F'} : {}}
+                                >
+                                    <UserGroupIcon className="w-5 h-5 mr-3" />
+                                    Customers
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            )}
+            
+            {/* Desktop Sidebar */}
+            <div className="hidden lg:block w-64 bg-white shadow-sm min-h-screen">
+                <div className="p-6">
+                    <nav className="space-y-2">
+                        <button
+                            onClick={() => setActiveTab('overview')}
+                            className={`w-full flex items-center px-4 py-2 text-left text-sm font-medium rounded-lg transition-colors ${
+                                activeTab === 'overview' 
+                                    ? 'text-white' 
+                                    : 'text-gray-700 hover:bg-gray-100'
+                            }`}
+                            style={activeTab === 'overview' ? {backgroundColor: '#3A4C2F'} : {}}
+                        >
+                            <ChartBarIcon className="w-5 h-5 mr-3" />
+                            Overview
+                        </button>
+                        <Link
+                            href="/admin/products"
+                            className="w-full flex items-center px-4 py-2 text-left text-sm font-medium rounded-lg transition-colors text-gray-700 hover:bg-gray-100"
+                        >
+                            <ShoppingBagIcon className="w-5 h-5 mr-3" />
+                            Products
+                        </Link>
+                        <Link
+                            href="/admin/orders"
+                            className="w-full flex items-center px-4 py-2 text-left text-sm font-medium rounded-lg transition-colors text-gray-700 hover:bg-gray-100"
+                        >
+                            <CurrencyDollarIcon className="w-5 h-5 mr-3" />
+                            Orders
+                        </Link>
+                        <button
+                            onClick={() => setActiveTab('customers')}
+                            className={`w-full flex items-center px-4 py-2 text-left text-sm font-medium rounded-lg transition-colors ${
+                                activeTab === 'customers' 
+                                    ? 'text-white' 
+                                    : 'text-gray-700 hover:bg-gray-100'
+                            }`}
+                            style={activeTab === 'customers' ? {backgroundColor: '#3A4C2F'} : {}}
+                        >
+                            <UserGroupIcon className="w-5 h-5 mr-3" />
+                            Customers
+                        </button>
+                    </nav>
+                </div>
             </div>
-        </div>
+        </>
     );
 
     const StatsCards = () => (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
             <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                 <div className="flex items-center">
                     <div className="p-2 rounded-lg" style={{backgroundColor: '#3A4C2F'}}>
@@ -589,8 +669,9 @@ export default function AdminDashboard({ stats, recent_orders, recent_products, 
                 />
             </Head>
             
-            <div className="min-h-screen bg-gray-50" style={{
+            <div className="min-h-screen" style={{
                 fontFamily: 'Inter, sans-serif',
+                backgroundColor: '#FDF8E3',
                 color: '#333333'
             }}>
                 <Navigation />
@@ -598,7 +679,7 @@ export default function AdminDashboard({ stats, recent_orders, recent_products, 
                 <div className="flex">
                     <Sidebar />
                     
-                    <div className="flex-1 p-8">
+                    <div className="flex-1 p-4 lg:p-8">
                         {renderActiveTab()}
                     </div>
                 </div>

@@ -3,7 +3,9 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -43,6 +45,29 @@ Route::prefix('checkout')->name('checkout.')->group(function () {
     Route::post('/mpesa/callback', [CheckoutController::class, 'mpesaCallback'])->name('mpesa.callback');
 });
 
+// Order tracking routes (for guests)
+Route::get('/track-order', [OrderController::class, 'trackForm'])->name('orders.track-form');
+Route::post('/track-order', [OrderController::class, 'track'])->name('orders.track');
+
+// Authenticated order routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+});
+
+// Order tracking routes
+Route::prefix('orders')->name('orders.')->group(function () {
+    // Guest order tracking
+    Route::get('/track', [OrderController::class, 'trackForm'])->name('track.form');
+    Route::post('/track', [OrderController::class, 'track'])->name('track');
+    
+    // Authenticated user orders
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::get('/{order}', [OrderController::class, 'show'])->name('show');
+    });
+});
+
 Route::get('/contact', function () {
     return Inertia::render('contact');
 })->name('contact');
@@ -74,9 +99,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 require __DIR__.'/settings.php';

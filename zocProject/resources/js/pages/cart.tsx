@@ -352,14 +352,14 @@ export default function Cart({ cartItems: initialCartItems, total: initialTotal 
                 <div className="pt-24 pb-16 px-4">
                     <div className="max-w-6xl mx-auto">
                         <div className="bg-white rounded-xl shadow-lg border border-gray-100 mb-8">
-                            <div className="px-8 py-6 border-b border-gray-100">
-                                <div className="flex justify-between items-center">
-                                    <h1 className="text-3xl font-bold" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                            <div className="px-4 sm:px-8 py-6 border-b border-gray-100">
+                                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
+                                    <h1 className="text-2xl sm:text-3xl font-bold" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
                                         Shopping Cart
                                     </h1>
                                     <button
                                         onClick={clearCart}
-                                        className="text-red-600 hover:text-red-800 text-sm font-semibold transition-colors px-4 py-2 rounded-lg hover:bg-red-50"
+                                        className="text-red-600 hover:text-red-800 text-sm font-semibold transition-colors px-4 py-2 rounded-lg hover:bg-red-50 self-start sm:self-auto"
                                     >
                                         <i className="fas fa-trash mr-2"></i>
                                         Clear Cart
@@ -369,8 +369,84 @@ export default function Cart({ cartItems: initialCartItems, total: initialTotal 
 
                             <div className="divide-y divide-gray-100">
                                 {cartItems.map((item) => (
-                                    <div key={item.id} className="p-6 hover:bg-gray-50 transition-colors">
-                                        <div className="flex items-center space-x-6">
+                                    <div key={item.id} className="p-4 sm:p-6 hover:bg-gray-50 transition-colors">
+                                        {/* Mobile Layout */}
+                                        <div className="block sm:hidden">
+                                            <div className="flex space-x-4 mb-4">
+                                                <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24">
+                                                    {item.product.primary_image ? (
+                                                        <img
+                                                            src={item.product.primary_image.url}
+                                                            alt={item.product.primary_image.alt_text || item.product.name}
+                                                            className="w-full h-full object-cover rounded-lg shadow-md"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-full h-full bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200">
+                                                            <i className="fas fa-image text-xl text-gray-400"></i>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <div className="flex-1">
+                                                    <h3 className="text-lg font-bold mb-2" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
+                                                        <Link 
+                                                            href={`/products/${item.product.slug}`}
+                                                            className="hover:opacity-80 transition-opacity"
+                                                            style={{color: '#3A4C2F'}}
+                                                        >
+                                                            {item.product.name}
+                                                        </Link>
+                                                    </h3>
+                                                    {item.product.weight && (
+                                                        <p className="text-sm text-gray-600 font-medium mb-2">
+                                                            <i className="fas fa-weight mr-1"></i>
+                                                            {item.product.weight}
+                                                        </p>
+                                                    )}
+                                                    <p className="text-lg font-bold" style={{color: '#3A4C2F'}}>
+                                                        {formatPrice(item.price)} each
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center border-2 border-gray-200 rounded-lg overflow-hidden">
+                                                    <button
+                                                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                                        disabled={item.quantity <= 1 || isUpdating === item.id}
+                                                        className="p-2 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                                    >
+                                                        <MinusIcon className="w-4 h-4" />
+                                                    </button>
+                                                    <span className="px-4 py-2 font-bold text-lg min-w-[3rem] text-center" style={{color: '#3A4C2F'}}>
+                                                        {item.quantity}
+                                                    </span>
+                                                    <button
+                                                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                                        disabled={isUpdating === item.id}
+                                                        className="p-2 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                                    >
+                                                        <PlusIcon className="w-4 h-4" />
+                                                    </button>
+                                                </div>
+                                                
+                                                <div className="flex items-center space-x-3">
+                                                    <div className="text-right">
+                                                        <p className="text-lg font-bold" style={{color: '#3A4C2F'}}>
+                                                            {formatPrice(item.quantity * item.price)}
+                                                        </p>
+                                                    </div>
+                                                    <button
+                                                        onClick={() => removeItem(item.id)}
+                                                        className="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all"
+                                                    >
+                                                        <TrashIcon className="w-5 h-5" />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Desktop Layout */}
+                                        <div className="hidden sm:flex items-center space-x-6">
                                             <div className="flex-shrink-0 w-24 h-24">
                                                 {item.product.primary_image ? (
                                                     <img

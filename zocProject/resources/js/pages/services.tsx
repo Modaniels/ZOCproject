@@ -55,7 +55,7 @@ export default function Services() {
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-1 lg:grid-cols-5 gap-8 mb-16">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8 mb-16">
                             <div className="text-center p-8 rounded-2xl transition-transform hover:scale-105 border-2" 
                                  style={{backgroundColor: '#FDF8E3', borderColor: '#3A4C2F'}}>
                                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" 

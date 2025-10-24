@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Head, Link, router } from '@inertiajs/react';
-import { ChevronDownIcon, MagnifyingGlassIcon, ShoppingCartIcon, HeartIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, MagnifyingGlassIcon, ShoppingCartIcon, HeartIcon, AdjustmentsHorizontalIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Newsletter from '../components/Newsletter';
 import Navigation from '../components/Navigation';
 
@@ -79,6 +79,7 @@ export default function Products({ products, categories, filters }: Props) {
         max: (safeFilters && typeof safeFilters.max_price === 'string') ? safeFilters.max_price : ''
     });
     const [cartCount, setCartCount] = useState(0);
+    const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
     // Early return if essential data is missing
     if (!safeProducts || !safeProducts.data) {
@@ -169,7 +170,7 @@ export default function Products({ products, categories, filters }: Props) {
                 color: '#333333'
             }}>
                 {/* Header & Navigation */}
-                <Navigation cartCount={cartCount} />
+                <Navigation cartCount={cartCount} showAccount={true} />
 
                 {/* Hero Section */}
                 <div className="relative py-20 px-4 text-center" style={{
@@ -188,6 +189,18 @@ export default function Products({ products, categories, filters }: Props) {
                 </div>
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    {/* Mobile Filter Button */}
+                    <div className="lg:hidden mb-6">
+                        <button
+                            onClick={() => setIsMobileFiltersOpen(true)}
+                            className="flex items-center justify-center w-full py-3 px-4 bg-white rounded-lg shadow-md border border-gray-200 font-medium"
+                            style={{color: '#3A4C2F'}}
+                        >
+                            <AdjustmentsHorizontalIcon className="w-5 h-5 mr-2" />
+                            Filters & Search
+                        </button>
+                    </div>
+
                     <div className="lg:grid lg:grid-cols-4 lg:gap-8">
                         {/* Sidebar Filters */}
                         <div className="hidden lg:block">
@@ -280,16 +293,16 @@ export default function Products({ products, categories, filters }: Props) {
                         {/* Main Content */}
                         <div className="lg:col-span-3">
                             {/* Sort and View Options */}
-                            <div className="flex justify-between items-center mb-8 bg-white rounded-xl shadow-lg p-4 border border-gray-100">
-                                <div className="text-sm text-gray-600">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8 bg-white rounded-xl shadow-lg p-4 border border-gray-100 space-y-3 sm:space-y-0">
+                                <div className="text-sm text-gray-600 order-2 sm:order-1">
                                     <span className="font-semibold" style={{color: '#3A4C2F'}}>
                                         {safeProducts.data?.length || 0}
                                     </span> of <span className="font-semibold" style={{color: '#3A4C2F'}}>
                                         {safeProducts.meta?.total || 0}
                                     </span> products
                                 </div>
-                                <div className="flex items-center space-x-4">
-                                    <label className="text-sm font-medium text-gray-600">Sort by:</label>
+                                <div className="flex items-center justify-between sm:justify-end space-x-3 order-1 sm:order-2">
+                                    <label className="text-sm font-medium text-gray-600 whitespace-nowrap">Sort by:</label>
                                     <select
                                         value={sortBy}
                                         onChange={(e) => {
@@ -301,7 +314,7 @@ export default function Products({ products, categories, filters }: Props) {
                                                 search: searchQuery 
                                             });
                                         }}
-                                        className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-opacity-50"
+                                        className="flex-1 sm:flex-none border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 min-w-0"
                                         style={{'--focus-ring-color': '#3A4C2F'} as React.CSSProperties}
                                     >
                                         <option value="created_at">Newest</option>
@@ -314,7 +327,7 @@ export default function Products({ products, categories, filters }: Props) {
                             </div>
 
                             {/* Products Grid */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
                                 {safeProducts.data && safeProducts.data.length > 0 ? (
                                     safeProducts.data.map((product) => {
                                         // Add safety check for each product
@@ -326,7 +339,7 @@ export default function Products({ products, categories, filters }: Props) {
                                         <div key={product.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
                                             <div className="relative">
                                                 <Link href={`/products/${product.slug || '#'}`}>
-                                                    <div className="h-56 bg-gray-100 flex items-center justify-center overflow-hidden">
+                                                    <div className="h-40 sm:h-56 bg-gray-100 flex items-center justify-center overflow-hidden">
                                                         {product.primary_image ? (
                                                             <img
                                                                 src={product.primary_image.url}
@@ -335,51 +348,51 @@ export default function Products({ products, categories, filters }: Props) {
                                                             />
                                                         ) : (
                                                             <div className="text-center">
-                                                                <i className="fas fa-image text-4xl text-gray-400 mb-2"></i>
-                                                                <span className="text-gray-500 text-sm">{product.name || 'Product'}</span>
+                                                                <i className="fas fa-image text-2xl sm:text-4xl text-gray-400 mb-2"></i>
+                                                                <span className="text-gray-500 text-xs sm:text-sm">{product.name || 'Product'}</span>
                                                             </div>
                                                         )}
                                                     </div>
                                                 </Link>
                                                 {product.discount_percentage && (
-                                                    <div className="absolute top-3 left-3 text-white px-3 py-1 rounded-full text-xs font-bold"
+                                                    <div className="absolute top-2 left-2 sm:top-3 sm:left-3 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-bold"
                                                          style={{backgroundColor: '#F4C542', color: '#333333'}}>
                                                         -{product.discount_percentage}%
                                                     </div>
                                                 )}
                                                 {product.is_featured && (
-                                                    <div className="absolute top-3 right-3 text-white px-3 py-1 rounded-full text-xs font-bold"
+                                                    <div className="absolute top-2 right-2 sm:top-3 sm:right-3 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-bold"
                                                          style={{backgroundColor: '#3A4C2F'}}>
                                                         Featured
                                                     </div>
                                                 )}
                                             </div>
                                             
-                                            <div className="p-6">
-                                                <div className="mb-3">
+                                            <div className="p-3 sm:p-6">
+                                                <div className="mb-2 sm:mb-3">
                                                     <span className="text-xs font-semibold px-2 py-1 rounded-full"
                                                           style={{backgroundColor: '#F4C542', color: '#333333'}}>
                                                         {product.category?.name || 'No Category'}
                                                     </span>
                                                 </div>
-                                                <h3 className="text-lg font-bold mb-3" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
+                                                <h3 className="text-sm sm:text-lg font-bold mb-2 sm:mb-3 line-clamp-2" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
                                                     <Link href={`/products/${product.slug || '#'}`} 
                                                           className="hover:opacity-80 transition-opacity"
                                                           style={{color: '#3A4C2F'}}>
                                                         {product.name || 'Unnamed Product'}
                                                     </Link>
                                                 </h3>
-                                                <p className="text-gray-600 text-sm mb-4 line-clamp-2 leading-relaxed">
+                                                <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2 leading-relaxed hidden sm:block">
                                                     {product.short_description || ''}
                                                 </p>
                                                 
-                                                <div className="flex items-center justify-between mb-4">
+                                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 sm:mb-4 space-y-1 sm:space-y-0">
                                                     <div className="flex items-center space-x-2">
-                                                        <span className="text-xl font-bold" style={{color: '#3A4C2F'}}>
+                                                        <span className="text-lg sm:text-xl font-bold" style={{color: '#3A4C2F'}}>
                                                             {product.formatted_price || '$0.00'}
                                                         </span>
                                                         {product.formatted_compare_price && (
-                                                            <span className="text-sm text-gray-500 line-through">
+                                                            <span className="text-xs sm:text-sm text-gray-500 line-through">
                                                                 {product.formatted_compare_price}
                                                             </span>
                                                         )}
@@ -391,16 +404,17 @@ export default function Products({ products, categories, filters }: Props) {
                                                     )}
                                                 </div>
                                                 
-                                                <div className="flex space-x-3">
+                                                <div className="flex space-x-2 sm:space-x-3">
                                                     <button
                                                         onClick={() => addToCart(product.id)}
-                                                        className="flex-1 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-200 hover:opacity-90 transform hover:scale-105"
+                                                        className="flex-1 text-white py-2 sm:py-3 px-2 sm:px-4 rounded-lg font-semibold transition-all duration-200 hover:opacity-90 transform hover:scale-105 text-sm sm:text-base"
                                                         style={{backgroundColor: '#3A4C2F'}}
                                                     >
-                                                        Add to Cart
+                                                        <span className="hidden sm:inline">Add to Cart</span>
+                                                        <span className="sm:hidden">Add</span>
                                                     </button>
-                                                    <button className="p-3 border-2 border-gray-200 rounded-lg hover:border-yellow-400 hover:bg-yellow-50 transition-all duration-200">
-                                                        <HeartIcon className="w-5 h-5 text-gray-600" />
+                                                    <button className="p-2 sm:p-3 border-2 border-gray-200 rounded-lg hover:border-yellow-400 hover:bg-yellow-50 transition-all duration-200">
+                                                        <HeartIcon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
                                                     </button>
                                                 </div>
                                             </div>
@@ -446,6 +460,115 @@ export default function Products({ products, categories, filters }: Props) {
                         </div>
                     </div>
                 </div>
+
+                {/* Mobile Filter Overlay */}
+                {isMobileFiltersOpen && (
+                    <div className="fixed inset-0 z-50 lg:hidden">
+                        <div className="absolute inset-0 bg-black bg-opacity-50" onClick={() => setIsMobileFiltersOpen(false)}></div>
+                        <div className="absolute inset-y-0 left-0 w-full max-w-sm bg-white shadow-xl overflow-y-auto">
+                            <div className="p-6">
+                                <div className="flex items-center justify-between mb-6">
+                                    <h2 className="text-lg font-bold" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                        Filters & Search
+                                    </h2>
+                                    <button
+                                        onClick={() => setIsMobileFiltersOpen(false)}
+                                        className="p-2 hover:bg-gray-100 rounded-lg"
+                                    >
+                                        <XMarkIcon className="w-5 h-5" />
+                                    </button>
+                                </div>
+
+                                {/* Mobile Search */}
+                                <div className="mb-6">
+                                    <h3 className="text-base font-semibold mb-3" style={{color: '#3A4C2F'}}>Search Products</h3>
+                                    <form onSubmit={handleSearch} className="space-y-3">
+                                        <input
+                                            type="text"
+                                            placeholder="Search products..."
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
+                                            style={{'--focus-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                        />
+                                        <button
+                                            type="submit"
+                                            className="w-full text-white py-3 px-4 rounded-lg font-semibold transition duration-200 hover:opacity-90"
+                                            style={{backgroundColor: '#3A4C2F'}}
+                                        >
+                                            Search
+                                        </button>
+                                    </form>
+                                </div>
+
+                                {/* Mobile Categories */}
+                                <div className="mb-6">
+                                    <h3 className="text-base font-semibold mb-3" style={{color: '#3A4C2F'}}>Categories</h3>
+                                    <div className="space-y-2">
+                                        <button
+                                            onClick={() => {
+                                                setSelectedCategory('');
+                                                router.get('/products', { search: searchQuery, sort: sortBy });
+                                                setIsMobileFiltersOpen(false);
+                                            }}
+                                            className={`block w-full text-left px-4 py-3 rounded-lg transition-colors ${!selectedCategory ? 'text-white font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}
+                                            style={!selectedCategory ? {backgroundColor: '#3A4C2F'} : {}}
+                                        >
+                                            All Products
+                                        </button>
+                                        {safeCategories.map((category) => (
+                                            <button
+                                                key={category.id}
+                                                onClick={() => {
+                                                    setSelectedCategory(category.slug);
+                                                    router.get('/products', { category: category.slug, search: searchQuery, sort: sortBy });
+                                                    setIsMobileFiltersOpen(false);
+                                                }}
+                                                className={`block w-full text-left px-4 py-3 rounded-lg transition-colors ${selectedCategory === category.slug ? 'text-white font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}
+                                                style={selectedCategory === category.slug ? {backgroundColor: '#3A4C2F'} : {}}
+                                            >
+                                                {category.name}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Mobile Price Range */}
+                                <div className="mb-6">
+                                    <h3 className="text-base font-semibold mb-3" style={{color: '#3A4C2F'}}>Price Range</h3>
+                                    <div className="space-y-3">
+                                        <input
+                                            type="number"
+                                            placeholder="Min price"
+                                            value={priceRange.min}
+                                            onChange={(e) => setPriceRange(prev => ({ ...prev, min: e.target.value }))}
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
+                                            style={{'--focus-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                        />
+                                        <input
+                                            type="number"
+                                            placeholder="Max price"
+                                            value={priceRange.max}
+                                            onChange={(e) => setPriceRange(prev => ({ ...prev, max: e.target.value }))}
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
+                                            style={{'--focus-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                        />
+                                        <button
+                                            onClick={() => {
+                                                applyFilters();
+                                                setIsMobileFiltersOpen(false);
+                                            }}
+                                            className="w-full text-white py-3 px-4 rounded-lg font-semibold transition duration-200 hover:opacity-90"
+                                            style={{backgroundColor: '#3A4C2F'}}
+                                        >
+                                            Apply Filters
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Newsletter Section */}
                 <div className="py-20 px-4" style={{backgroundColor: '#3A4C2F'}}>

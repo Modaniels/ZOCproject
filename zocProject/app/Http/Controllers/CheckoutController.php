@@ -32,6 +32,21 @@ class CheckoutController extends Controller
             return $item->quantity * $item->price;
         });
 
+        // Get user details for pre-filling form
+        $userDetails = null;
+        if (Auth::check()) {
+            $user = Auth::user();
+            $userDetails = [
+                'firstName' => $user->name ? explode(' ', $user->name)[0] : '',
+                'lastName' => $user->name && count(explode(' ', $user->name)) > 1 ? explode(' ', $user->name)[1] : '',
+                'email' => $user->email,
+                'phone' => $user->phone ?? '',
+                'address' => $user->address ?? '',
+                'city' => $user->city ?? '',
+                'county' => $user->state ?? '',
+            ];
+        }
+
         return Inertia::render('checkout', [
             'cartItems' => $cartItems->map(function ($item) {
                 return [
@@ -56,6 +71,7 @@ class CheckoutController extends Controller
                 ];
             }),
             'total' => $total,
+            'userDetails' => $userDetails,
         ]);
     }
 
@@ -100,7 +116,7 @@ class CheckoutController extends Controller
 
             // Create order
             $order = Order::create([
-                'user_id' => Auth::id() ?? 0, // Set to 0 for guest users
+                'user_id' => Auth::id(), // Will be null for guest users
                 'order_number' => 'ZOC-' . time() . '-' . rand(1000, 9999),
                 'status' => 'pending',
                 'subtotal' => $validated['total'],

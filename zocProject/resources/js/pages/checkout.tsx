@@ -28,19 +28,28 @@ interface CartItem {
 interface Props {
     cartItems: CartItem[];
     total: number;
+    userDetails?: {
+        firstName: string;
+        lastName: string;
+        email: string;
+        phone: string;
+        address: string;
+        city: string;
+        county: string;
+    } | null;
 }
 
-export default function Checkout({ cartItems, total }: Props) {
+export default function Checkout({ cartItems, total, userDetails }: Props) {
     const [isProcessing, setIsProcessing] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState('mpesa');
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        address: '',
-        city: '',
-        county: '',
+        firstName: userDetails?.firstName || '',
+        lastName: userDetails?.lastName || '',
+        email: userDetails?.email || '',
+        phone: userDetails?.phone || '',
+        address: userDetails?.address || '',
+        city: userDetails?.city || '',
+        county: userDetails?.county || '',
         deliveryNotes: ''
     });
 
@@ -282,7 +291,7 @@ export default function Checkout({ cartItems, total }: Props) {
                 <div className="pt-24 pb-16 px-4">
                     <div className="max-w-6xl mx-auto">
                         <div className="mb-8">
-                            <h1 className="text-4xl font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                            <h1 className="text-3xl sm:text-4xl font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
                                 Checkout
                             </h1>
                             <div className="flex items-center space-x-2 text-sm text-gray-600">
@@ -295,14 +304,14 @@ export default function Checkout({ cartItems, total }: Props) {
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                             {/* Checkout Form */}
                             <div className="lg:col-span-2">
-                                <form onSubmit={handleCheckout} className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+                                <form onSubmit={handleCheckout} className="bg-white rounded-xl shadow-lg p-4 sm:p-8 border border-gray-100">
                                     {/* Customer Information */}
                                     <div className="mb-8">
-                                        <h2 className="text-2xl font-bold mb-6 flex items-center" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                            <UserIcon className="w-6 h-6 mr-2" />
+                                        <h2 className="text-xl sm:text-2xl font-bold mb-6 flex items-center" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                            <UserIcon className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
                                             Customer Information
                                         </h2>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                                             <div>
                                                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
                                                     First Name *

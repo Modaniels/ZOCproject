@@ -23,7 +23,7 @@ class AdminController extends Controller
             'total_customers' => User::count(),
             'total_revenue' => Order::where('payment_status', 'completed')->sum('total_amount'),
             'pending_orders' => Order::where('status', 'pending')->count(),
-            'low_stock_products' => Product::where('stock_quantity', '<', 10)->count(),
+            'low_stock_products' => Product::where('quantity', '<', 10)->count(),
         ];
 
         $recent_orders = Order::with(['user', 'items.product'])

@@ -23,6 +23,11 @@ class ProductImage extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     */
+    protected $appends = ['url'];
+
+    /**
      * Get the product this image belongs to
      */
     public function product(): BelongsTo
