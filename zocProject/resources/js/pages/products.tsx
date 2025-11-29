@@ -166,24 +166,26 @@ export default function Products({ products, categories, filters }: Props) {
             
             <div className="min-h-screen" style={{
                 fontFamily: 'Inter, sans-serif',
-                backgroundColor: '#FDF8E3',
-                color: '#333333'
+                backgroundColor: '#FAFAFA',
+                color: '#1F2937'
             }}>
                 {/* Header & Navigation */}
                 <Navigation cartCount={cartCount} showAccount={true} />
 
                 {/* Hero Section */}
-                <div className="relative py-20 px-4 text-center" style={{
-                    background: 'linear-gradient(135deg, #3A4C2F 0%, #2D3B22 100%)',
+                <div className="relative py-24 px-4 text-center" style={{
+                    backgroundImage: `url('/images/more_imgs/products_img.jpeg')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
                     marginTop: '70px'
                 }}>
-                    <div className="max-w-4xl mx-auto">
+                    <div className="absolute inset-0" style={{backgroundColor: 'rgba(31, 41, 55, 0.75)'}}></div>
+                    <div className="max-w-4xl mx-auto relative z-10">
                         <h1 className="text-5xl md:text-6xl font-bold text-white mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
-                            Our <span style={{color: '#F4C542'}}>Products</span>
+                            Our <span style={{color: '#D4AF37', textShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'}}>Store</span>
                         </h1>
                         <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                            Premium organic products straight from our farms to your table. 
-                            Discover fresh, sustainable produce grown with care and passion.
+                            Everything you need for modern sustainable farming—from organic food products and farm inputs to tools, machinery, and innovative farming technology solutions.
                         </p>
                     </div>
                 </div>
@@ -194,7 +196,7 @@ export default function Products({ products, categories, filters }: Props) {
                         <button
                             onClick={() => setIsMobileFiltersOpen(true)}
                             className="flex items-center justify-center w-full py-3 px-4 bg-white rounded-lg shadow-md border border-gray-200 font-medium"
-                            style={{color: '#3A4C2F'}}
+                            style={{color: '#2E7D32'}}
                         >
                             <AdjustmentsHorizontalIcon className="w-5 h-5 mr-2" />
                             Filters & Search
@@ -205,7 +207,7 @@ export default function Products({ products, categories, filters }: Props) {
                         {/* Sidebar Filters */}
                         <div className="hidden lg:block">
                             <div className="bg-white rounded-xl shadow-lg p-6 mb-6 border border-gray-100">
-                                <h3 className="text-lg font-semibold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif', color: '#3A4C2F'}}>Search Products</h3>
+                                <h3 className="text-lg font-semibold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif', color: '#1F2937'}}>Search Products</h3>
                                 <form onSubmit={handleSearch} className="space-y-4">
                                     <div>
                                         <input
@@ -214,13 +216,13 @@ export default function Products({ products, categories, filters }: Props) {
                                             value={searchQuery}
                                             onChange={(e) => setSearchQuery(e.target.value)}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                            style={{'--focus-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                            style={{'--focus-ring-color': '#2E7D32'} as React.CSSProperties}
                                         />
                                     </div>
                                     <button
                                         type="submit"
-                                        className="w-full text-white py-3 px-4 rounded-lg font-semibold transition duration-200 hover:opacity-90"
-                                        style={{backgroundColor: '#3A4C2F'}}
+                                        className="w-full text-white rounded-lg px-10 py-5 font-semibold transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
+                                        style={{backgroundColor: '#2E7D32', boxShadow: '0 4px 14px rgba(46, 125, 50, 0.39)'}}
                                     >
                                         Search
                                     </button>
@@ -228,7 +230,7 @@ export default function Products({ products, categories, filters }: Props) {
                             </div>
 
                             <div className="bg-white rounded-xl shadow-lg p-6 mb-6 border border-gray-100">
-                                <h3 className="text-lg font-semibold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif', color: '#3A4C2F'}}>Categories</h3>
+                                <h3 className="text-lg font-semibold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif', color: '#1F2937'}}>Categories</h3>
                                 <div className="space-y-2">
                                     <button
                                         onClick={() => {
@@ -236,7 +238,7 @@ export default function Products({ products, categories, filters }: Props) {
                                             router.get('/products', { search: searchQuery, sort: sortBy });
                                         }}
                                         className={`block w-full text-left px-4 py-3 rounded-lg transition-colors ${!selectedCategory ? 'text-white font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}
-                                        style={!selectedCategory ? {backgroundColor: '#3A4C2F'} : {}}
+                                        style={!selectedCategory ? {backgroundColor: '#2E7D32'} : {}}
                                     >
                                         All Products
                                     </button>
@@ -248,7 +250,7 @@ export default function Products({ products, categories, filters }: Props) {
                                                 router.get('/products', { category: category.slug, search: searchQuery, sort: sortBy });
                                             }}
                                             className={`block w-full text-left px-4 py-3 rounded-lg transition-colors ${selectedCategory === category.slug ? 'text-white font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}
-                                            style={selectedCategory === category.slug ? {backgroundColor: '#3A4C2F'} : {}}
+                                            style={selectedCategory === category.slug ? {backgroundColor: '#2E7D32'} : {}}
                                         >
                                             {category.name}
                                         </button>
@@ -257,7 +259,7 @@ export default function Products({ products, categories, filters }: Props) {
                             </div>
 
                             <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-                                <h3 className="text-lg font-semibold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif', color: '#3A4C2F'}}>Price Range</h3>
+                                <h3 className="text-lg font-semibold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif', color: '#1F2937'}}>Price Range</h3>
                                 <div className="space-y-4">
                                     <div>
                                         <input
@@ -266,7 +268,7 @@ export default function Products({ products, categories, filters }: Props) {
                                             value={priceRange.min}
                                             onChange={(e) => setPriceRange(prev => ({ ...prev, min: e.target.value }))}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                            style={{'--focus-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                            style={{'--focus-ring-color': '#2E7D32'} as React.CSSProperties}
                                         />
                                     </div>
                                     <div>
@@ -276,13 +278,13 @@ export default function Products({ products, categories, filters }: Props) {
                                             value={priceRange.max}
                                             onChange={(e) => setPriceRange(prev => ({ ...prev, max: e.target.value }))}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                            style={{'--focus-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                            style={{'--focus-ring-color': '#2E7D32'} as React.CSSProperties}
                                         />
                                     </div>
                                     <button
                                         onClick={applyFilters}
-                                        className="w-full text-white py-3 px-4 rounded-lg font-semibold transition duration-200 hover:opacity-90"
-                                        style={{backgroundColor: '#3A4C2F'}}
+                                        className="w-full text-white rounded-lg px-10 py-5 font-semibold transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
+                                        style={{backgroundColor: '#2E7D32', boxShadow: '0 4px 14px rgba(46, 125, 50, 0.39)'}}
                                     >
                                         Apply
                                     </button>
@@ -295,9 +297,9 @@ export default function Products({ products, categories, filters }: Props) {
                             {/* Sort and View Options */}
                             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8 bg-white rounded-xl shadow-lg p-4 border border-gray-100 space-y-3 sm:space-y-0">
                                 <div className="text-sm text-gray-600 order-2 sm:order-1">
-                                    <span className="font-semibold" style={{color: '#3A4C2F'}}>
+                                    <span className="font-semibold" style={{color: '#2E7D32'}}>
                                         {safeProducts.data?.length || 0}
-                                    </span> of <span className="font-semibold" style={{color: '#3A4C2F'}}>
+                                    </span> of <span className="font-semibold" style={{color: '#2E7D32'}}>
                                         {safeProducts.meta?.total || 0}
                                     </span> products
                                 </div>
@@ -315,7 +317,7 @@ export default function Products({ products, categories, filters }: Props) {
                                             });
                                         }}
                                         className="flex-1 sm:flex-none border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 min-w-0"
-                                        style={{'--focus-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                        style={{'--focus-ring-color': '#2E7D32'} as React.CSSProperties}
                                     >
                                         <option value="created_at">Newest</option>
                                         <option value="featured">Featured</option>
@@ -356,13 +358,13 @@ export default function Products({ products, categories, filters }: Props) {
                                                 </Link>
                                                 {product.discount_percentage && (
                                                     <div className="absolute top-2 left-2 sm:top-3 sm:left-3 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-bold"
-                                                         style={{backgroundColor: '#F4C542', color: '#333333'}}>
+                                                         style={{backgroundColor: '#D4AF37', color: '#1F2937'}}>
                                                         -{product.discount_percentage}%
                                                     </div>
                                                 )}
                                                 {product.is_featured && (
                                                     <div className="absolute top-2 right-2 sm:top-3 sm:right-3 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-bold"
-                                                         style={{backgroundColor: '#3A4C2F'}}>
+                                                         style={{backgroundColor: '#2E7D32'}}>
                                                         Featured
                                                     </div>
                                                 )}
@@ -371,14 +373,14 @@ export default function Products({ products, categories, filters }: Props) {
                                             <div className="p-3 sm:p-6">
                                                 <div className="mb-2 sm:mb-3">
                                                     <span className="text-xs font-semibold px-2 py-1 rounded-full"
-                                                          style={{backgroundColor: '#F4C542', color: '#333333'}}>
+                                                          style={{backgroundColor: '#D4AF37', color: '#1F2937'}}>
                                                         {product.category?.name || 'No Category'}
                                                     </span>
                                                 </div>
                                                 <h3 className="text-sm sm:text-lg font-bold mb-2 sm:mb-3 line-clamp-2" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
                                                     <Link href={`/products/${product.slug || '#'}`} 
                                                           className="hover:opacity-80 transition-opacity"
-                                                          style={{color: '#3A4C2F'}}>
+                                                          style={{color: '#1F2937'}}>
                                                         {product.name || 'Unnamed Product'}
                                                     </Link>
                                                 </h3>
@@ -388,7 +390,7 @@ export default function Products({ products, categories, filters }: Props) {
                                                 
                                                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 sm:mb-4 space-y-1 sm:space-y-0">
                                                     <div className="flex items-center space-x-2">
-                                                        <span className="text-lg sm:text-xl font-bold" style={{color: '#3A4C2F'}}>
+                                                        <span className="text-lg sm:text-xl font-bold" style={{color: '#2E7D32'}}>
                                                             {product.formatted_price || '$0.00'}
                                                         </span>
                                                         {product.formatted_compare_price && (
@@ -407,8 +409,8 @@ export default function Products({ products, categories, filters }: Props) {
                                                 <div className="flex space-x-2 sm:space-x-3">
                                                     <button
                                                         onClick={() => addToCart(product.id)}
-                                                        className="flex-1 text-white py-2 sm:py-3 px-2 sm:px-4 rounded-lg font-semibold transition-all duration-200 hover:opacity-90 transform hover:scale-105 text-sm sm:text-base"
-                                                        style={{backgroundColor: '#3A4C2F'}}
+                                                        className="flex-1 text-white rounded-lg px-10 py-5 font-semibold transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base"
+                                                        style={{backgroundColor: '#2E7D32', boxShadow: '0 4px 14px rgba(46, 125, 50, 0.39)'}}
                                                     >
                                                         <span className="hidden sm:inline">Add to Cart</span>
                                                         <span className="sm:hidden">Add</span>
@@ -424,8 +426,8 @@ export default function Products({ products, categories, filters }: Props) {
                                 ) : (
                                     <div className="col-span-full text-center py-16">
                                         <div className="bg-white rounded-xl shadow-lg p-12">
-                                            <i className="fas fa-search text-6xl mb-6" style={{color: '#3A4C2F'}}></i>
-                                            <h3 className="text-xl font-bold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif', color: '#3A4C2F'}}>
+                                            <i className="fas fa-search text-6xl mb-6" style={{color: '#2E7D32'}}></i>
+                                            <h3 className="text-xl font-bold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif', color: '#1F2937'}}>
                                                 No products found
                                             </h3>
                                             <p className="text-gray-500 text-lg mb-2">We couldn't find any products matching your criteria.</p>
@@ -450,7 +452,7 @@ export default function Products({ products, categories, filters }: Props) {
                                                         ? 'text-gray-700 hover:bg-gray-50'
                                                         : 'text-gray-400 cursor-not-allowed'
                                                 }`}
-                                                style={link.active ? {backgroundColor: '#3A4C2F'} : {}}
+                                                style={link.active ? {backgroundColor: '#2E7D32'} : {}}
                                                 dangerouslySetInnerHTML={{ __html: link.label }}
                                             />
                                         )) || []}
@@ -468,7 +470,7 @@ export default function Products({ products, categories, filters }: Props) {
                         <div className="absolute inset-y-0 left-0 w-full max-w-sm bg-white shadow-xl overflow-y-auto">
                             <div className="p-6">
                                 <div className="flex items-center justify-between mb-6">
-                                    <h2 className="text-lg font-bold" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    <h2 className="text-lg font-bold" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                         Filters & Search
                                     </h2>
                                     <button
@@ -481,7 +483,7 @@ export default function Products({ products, categories, filters }: Props) {
 
                                 {/* Mobile Search */}
                                 <div className="mb-6">
-                                    <h3 className="text-base font-semibold mb-3" style={{color: '#3A4C2F'}}>Search Products</h3>
+                                    <h3 className="text-base font-semibold mb-3" style={{color: '#1F2937'}}>Search Products</h3>
                                     <form onSubmit={handleSearch} className="space-y-3">
                                         <input
                                             type="text"
@@ -489,12 +491,12 @@ export default function Products({ products, categories, filters }: Props) {
                                             value={searchQuery}
                                             onChange={(e) => setSearchQuery(e.target.value)}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                            style={{'--focus-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                            style={{'--focus-ring-color': '#2E7D32'} as React.CSSProperties}
                                         />
                                         <button
                                             type="submit"
-                                            className="w-full text-white py-3 px-4 rounded-lg font-semibold transition duration-200 hover:opacity-90"
-                                            style={{backgroundColor: '#3A4C2F'}}
+                                            className="w-full text-white rounded-lg px-10 py-5 font-semibold transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
+                                            style={{backgroundColor: '#2E7D32', boxShadow: '0 4px 14px rgba(46, 125, 50, 0.39)'}}
                                         >
                                             Search
                                         </button>
@@ -503,7 +505,7 @@ export default function Products({ products, categories, filters }: Props) {
 
                                 {/* Mobile Categories */}
                                 <div className="mb-6">
-                                    <h3 className="text-base font-semibold mb-3" style={{color: '#3A4C2F'}}>Categories</h3>
+                                    <h3 className="text-base font-semibold mb-3" style={{color: '#1F2937'}}>Categories</h3>
                                     <div className="space-y-2">
                                         <button
                                             onClick={() => {
@@ -512,7 +514,7 @@ export default function Products({ products, categories, filters }: Props) {
                                                 setIsMobileFiltersOpen(false);
                                             }}
                                             className={`block w-full text-left px-4 py-3 rounded-lg transition-colors ${!selectedCategory ? 'text-white font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}
-                                            style={!selectedCategory ? {backgroundColor: '#3A4C2F'} : {}}
+                                            style={!selectedCategory ? {backgroundColor: '#2E7D32'} : {}}
                                         >
                                             All Products
                                         </button>
@@ -525,7 +527,7 @@ export default function Products({ products, categories, filters }: Props) {
                                                     setIsMobileFiltersOpen(false);
                                                 }}
                                                 className={`block w-full text-left px-4 py-3 rounded-lg transition-colors ${selectedCategory === category.slug ? 'text-white font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}
-                                                style={selectedCategory === category.slug ? {backgroundColor: '#3A4C2F'} : {}}
+                                                style={selectedCategory === category.slug ? {backgroundColor: '#2E7D32'} : {}}
                                             >
                                                 {category.name}
                                             </button>
@@ -535,7 +537,7 @@ export default function Products({ products, categories, filters }: Props) {
 
                                 {/* Mobile Price Range */}
                                 <div className="mb-6">
-                                    <h3 className="text-base font-semibold mb-3" style={{color: '#3A4C2F'}}>Price Range</h3>
+                                    <h3 className="text-base font-semibold mb-3" style={{color: '#1F2937'}}>Price Range</h3>
                                     <div className="space-y-3">
                                         <input
                                             type="number"
@@ -543,7 +545,7 @@ export default function Products({ products, categories, filters }: Props) {
                                             value={priceRange.min}
                                             onChange={(e) => setPriceRange(prev => ({ ...prev, min: e.target.value }))}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                            style={{'--focus-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                            style={{'--focus-ring-color': '#2E7D32'} as React.CSSProperties}
                                         />
                                         <input
                                             type="number"
@@ -551,15 +553,15 @@ export default function Products({ products, categories, filters }: Props) {
                                             value={priceRange.max}
                                             onChange={(e) => setPriceRange(prev => ({ ...prev, max: e.target.value }))}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                            style={{'--focus-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                            style={{'--focus-ring-color': '#2E7D32'} as React.CSSProperties}
                                         />
                                         <button
                                             onClick={() => {
                                                 applyFilters();
                                                 setIsMobileFiltersOpen(false);
                                             }}
-                                            className="w-full text-white py-3 px-4 rounded-lg font-semibold transition duration-200 hover:opacity-90"
-                                            style={{backgroundColor: '#3A4C2F'}}
+                                            className="w-full text-white rounded-lg px-10 py-5 font-semibold transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
+                                            style={{backgroundColor: '#2E7D32', boxShadow: '0 4px 14px rgba(46, 125, 50, 0.39)'}}
                                         >
                                             Apply Filters
                                         </button>
@@ -571,23 +573,24 @@ export default function Products({ products, categories, filters }: Props) {
                 )}
 
                 {/* Newsletter Section */}
-                <div className="py-20 px-4" style={{backgroundColor: '#3A4C2F'}}>
+                <div className="py-24 px-4" style={{backgroundColor: '#1F2937'}}>
                     <div className="max-w-4xl mx-auto">
                         <Newsletter />
                     </div>
                 </div>
 
                 {/* Footer */}
-                <footer className="py-16 px-4" style={{backgroundColor: '#1A1A1A', color: '#EDEDEC'}}>
-                    <div className="max-w-6xl mx-auto">
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                            <div className="md:col-span-2">
-                                <div className="text-3xl font-bold mb-4" style={{color: '#F4C542', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    ZOC Farm
+                <footer className="text-white py-16" style={{backgroundColor: '#1A1A1A'}}>
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div>
+                                <div className="flex items-center space-x-3 mb-6">
+                                    <div className="text-2xl font-bold" style={{color: '#D4AF37', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                        ZOC Farm
+                                    </div>
                                 </div>
                                 <p className="text-gray-400 mb-6 leading-relaxed">
-                                    Connecting farmers, investors, contractors and consumers through transparency, 
-                                    sustainability, and community-driven agriculture.
+                                    Zedjah Organic Crowd Farms - A systemized regenerative farming company specializing in organic food production and farm management from Kirinyaga County, Kenya.
                                 </p>
                                 <div className="flex space-x-4">
                                     <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
@@ -604,39 +607,49 @@ export default function Products({ products, categories, filters }: Props) {
                                     </a>
                                 </div>
                             </div>
-                            
+
                             <div>
-                                <h4 className="text-lg font-semibold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif'}}>Quick Links</h4>
-                                <ul className="space-y-2">
-                                    <li><a href="/" className="text-gray-400 hover:text-yellow-400 transition-colors">Home</a></li>
-                                    <li><a href="/about" className="text-gray-400 hover:text-yellow-400 transition-colors">About</a></li>
-                                    <li><a href="/services" className="text-gray-400 hover:text-yellow-400 transition-colors">Services</a></li>
-                                    <li><a href="/products" className="text-gray-400 hover:text-yellow-400 transition-colors">Products</a></li>
-                                    <li><a href="/contact" className="text-gray-400 hover:text-yellow-400 transition-colors">Contact</a></li>
+                                <h3 className="text-lg font-bold mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>Quick Links</h3>
+                                <ul className="space-y-3">
+                                    <li><a href="/" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                                    <li><a href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                                    <li><a href="/services" className="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                                    <li><a href="/products" className="text-gray-400 hover:text-white transition-colors">Products</a></li>
+                                    <li><a href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
                                 </ul>
                             </div>
-                            
+
                             <div>
-                                <h4 className="text-lg font-semibold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif'}}>Contact Info</h4>
-                                <ul className="space-y-2 text-gray-400">
-                                    <li>
+                                <h3 className="text-lg font-bold mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>Contact Info</h3>
+                                <ul className="space-y-3">
+                                    <li className="text-gray-400">
                                         <i className="fas fa-map-marker-alt mr-2"></i>
-                                        123 Farm Road, Green Valley
+                                        020 Mutira, Kirinyaga County, Kenya
                                     </li>
-                                    <li>
+                                    <li className="text-gray-400">
                                         <i className="fas fa-phone mr-2"></i>
-                                        +1 (555) 123-4567
+                                        +254-790-344-724
                                     </li>
-                                    <li>
+                                    <li className="text-gray-400">
+                                        <i className="fas fa-phone mr-2"></i>
+                                        +254-741-122-375
+                                    </li>
+                                    <li className="text-gray-400">
+                                        <i className="fas fa-phone mr-2"></i>
+                                        +254-754-919-395
+                                    </li>
+                                    <li className="text-gray-400">
                                         <i className="fas fa-envelope mr-2"></i>
-                                        info@zocfarm.com
+                                        zedjahorganiccrowdfarms@gmail.com
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        
-                        <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-                            <p>&copy; 2024 ZOC Farm. All rights reserved.</p>
+
+                        <div className="border-t border-gray-700 mt-12 pt-8 text-center">
+                            <p className="text-gray-400">
+                                &copy; 2025 Zedjah Organic Crowd Farms Ltd. All rights reserved.
+                            </p>
                         </div>
                     </div>
                 </footer>

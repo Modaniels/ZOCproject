@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -73,8 +74,15 @@ Route::get('/contact', function () {
     return Inertia::render('contact');
 })->name('contact');
 
-// Admin routes (for now without auth middleware for testing)
+// Admin authentication routes
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+});
+
+// Admin routes - Protected with admin authentication
+Route::prefix('admin')->name('admin.')->middleware(['admin.auth'])->group(function () {
     // Dashboard
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
     

@@ -79,14 +79,16 @@ export default function Navigation({ cartCount = 0, showAccount = false }: Navig
                 <meta name="csrf-token" content={getCsrfToken()} />
             )}
             
-            <nav className="navbar fixed w-full z-30 top-0 start-0 border-b border-gray-200 bg-white shadow-sm">
-                <div className="w-full px-4 py-3 sm:px-6 lg:px-8">
+            <nav className="navbar fixed w-full z-30 top-0 start-0 border-b shadow-sm" style={{backgroundColor: '#1F2937', borderColor: '#374151'}}>
+                <div className="w-full px-4 py-2 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between w-full">
                         <div className="flex items-center">
-                            <Link href="/" className="flex items-center space-x-3">
-                                <div className="text-xl sm:text-2xl font-bold" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    ZOC Farm
-                                </div>
+                            <Link href="/" className="flex items-center">
+                                <img 
+                                    src="/images/logo.png" 
+                                    alt="ZOC Farm Logo" 
+                                    className="h-16 sm:h-20 w-auto"
+                                />
                             </Link>
                         </div>
 
@@ -95,36 +97,36 @@ export default function Navigation({ cartCount = 0, showAccount = false }: Navig
                             <div className="hidden lg:flex items-center space-x-8 mr-3">
                                 <ul className="flex space-x-8 font-medium">
                                     <li>
-                                        <Link href="/" className="text-gray-700 hover:opacity-80 transition-colors duration-200 text-base">
+                                        <Link href="/" className="text-white hover:opacity-80 transition-colors duration-200 text-base">
                                             Home
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/about" className="text-gray-700 hover:opacity-80 transition-colors duration-200 text-base">
+                                        <Link href="/about" className="text-white hover:opacity-80 transition-colors duration-200 text-base">
                                             About
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/services" className="text-gray-700 hover:opacity-80 transition-colors duration-200 text-base">
+                                        <Link href="/services" className="text-white hover:opacity-80 transition-colors duration-200 text-base">
                                             Services
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/products" className="text-gray-700 hover:opacity-80 transition-colors duration-200 text-base">
+                                        <Link href="/products" className="text-white hover:opacity-80 transition-colors duration-200 text-base">
                                             Products
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/contact" className="text-gray-700 hover:opacity-80 transition-colors duration-200 text-base">
+                                        <Link href="/contact" className="text-white hover:opacity-80 transition-colors duration-200 text-base">
                                             Contact
                                         </Link>
                                     </li>
                                 </ul>
                             </div>
 
-                            {/* Cart Icon */}
-                            <Link href="/cart" className="relative p-2 hover:text-yellow-600 transition-colors"
-                                  style={{color: '#3A4C2F'}}>
+                            {/* Cart Icon - Desktop Only */}
+                            <Link href="/cart" className="hidden lg:block relative p-2 hover:opacity-80 transition-colors"
+                                  style={{color: '#FFFFFF'}}>
                                 <ShoppingCartIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                                 {currentCartCount > 0 && (
                                     <span className="absolute -top-1 -right-1 text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center text-white font-medium text-[10px] sm:text-xs" 
@@ -141,8 +143,7 @@ export default function Navigation({ cartCount = 0, showAccount = false }: Navig
                                         <div className="relative">
                                             <button
                                                 onClick={() => setIsAccountDropdownOpen(!isAccountDropdownOpen)}
-                                                className="flex items-center space-x-2 p-2 text-gray-700 hover:text-yellow-600 transition-colors"
-                                                style={{color: '#3A4C2F'}}
+                                                className="flex items-center space-x-2 p-2 text-white hover:opacity-80 transition-colors"
                                             >
                                                 <UserIcon className="w-5 h-5" />
                                                 <span className="text-sm font-medium">{auth.user.name}</span>
@@ -191,8 +192,8 @@ export default function Navigation({ cartCount = 0, showAccount = false }: Navig
                                         <div className="flex items-center">
                                             <Link
                                                 href="/login"
-                                                className="text-sm font-medium px-4 py-2 rounded-md text-gray-700 hover:text-white hover:bg-opacity-90 transition-all border border-gray-300"
-                                                style={{color: '#3A4C2F'}}
+                                                className="text-sm font-medium px-4 py-2 rounded-md text-white hover:opacity-80 transition-all border"
+                                                style={{borderColor: '#D4AF37'}}
                                             >
                                                 Account
                                             </Link>
@@ -205,7 +206,7 @@ export default function Navigation({ cartCount = 0, showAccount = false }: Navig
                             <div className="lg:hidden">
                                 <button 
                                     type="button" 
-                                    className="text-gray-500 hover:text-gray-600 p-2"
+                                    className="text-white hover:opacity-80 p-2"
                                     onClick={toggleMobileMenu}
                                     aria-label="Toggle mobile menu"
                                 >
@@ -221,12 +222,12 @@ export default function Navigation({ cartCount = 0, showAccount = false }: Navig
 
                     {/* Mobile Navigation Menu */}
                     {isMobileMenuOpen && (
-                        <div className="lg:hidden border-t border-gray-200 mt-3 pt-3">
+                        <div className="lg:hidden border-t mt-3 pt-3" style={{borderColor: '#333333'}}>
                             <ul className="flex flex-col space-y-3 font-medium">
                                 <li>
                                     <Link 
                                         href="/" 
-                                        className="block text-gray-700 hover:opacity-80 transition-colors duration-200 text-base py-2"
+                                        className="block text-white hover:opacity-80 transition-colors duration-200 text-base py-2"
                                         onClick={closeMobileMenu}
                                     >
                                         Home
@@ -235,7 +236,7 @@ export default function Navigation({ cartCount = 0, showAccount = false }: Navig
                                 <li>
                                     <Link 
                                         href="/about" 
-                                        className="block text-gray-700 hover:opacity-80 transition-colors duration-200 text-base py-2"
+                                        className="block text-white hover:opacity-80 transition-colors duration-200 text-base py-2"
                                         onClick={closeMobileMenu}
                                     >
                                         About
@@ -244,7 +245,7 @@ export default function Navigation({ cartCount = 0, showAccount = false }: Navig
                                 <li>
                                     <Link 
                                         href="/services" 
-                                        className="block text-gray-700 hover:opacity-80 transition-colors duration-200 text-base py-2"
+                                        className="block text-white hover:opacity-80 transition-colors duration-200 text-base py-2"
                                         onClick={closeMobileMenu}
                                     >
                                         Services
@@ -253,7 +254,7 @@ export default function Navigation({ cartCount = 0, showAccount = false }: Navig
                                 <li>
                                     <Link 
                                         href="/products" 
-                                        className="block text-gray-700 hover:opacity-80 transition-colors duration-200 text-base py-2"
+                                        className="block text-white hover:opacity-80 transition-colors duration-200 text-base py-2"
                                         onClick={closeMobileMenu}
                                     >
                                         Products
@@ -262,19 +263,34 @@ export default function Navigation({ cartCount = 0, showAccount = false }: Navig
                                 <li>
                                     <Link 
                                         href="/contact" 
-                                        className="block text-gray-700 hover:opacity-80 transition-colors duration-200 text-base py-2"
+                                        className="block text-white hover:opacity-80 transition-colors duration-200 text-base py-2"
                                         onClick={closeMobileMenu}
                                     >
                                         Contact
                                     </Link>
                                 </li>
+                                <li>
+                                    <Link 
+                                        href="/cart" 
+                                        className="block text-white hover:opacity-80 transition-colors duration-200 text-base py-2 flex items-center justify-between"
+                                        onClick={closeMobileMenu}
+                                    >
+                                        <span>Cart</span>
+                                        {currentCartCount > 0 && (
+                                            <span className="text-xs rounded-full h-5 w-5 flex items-center justify-center text-white font-medium" 
+                                                  style={{backgroundColor: '#F4C542', color: '#333333'}}>
+                                                {currentCartCount}
+                                            </span>
+                                        )}
+                                    </Link>
+                                </li>
                                 
                                 {/* Mobile Authentication Options - Only show if showAccount is true */}
                                 {showAccount && (
-                                    <li className="border-t border-gray-200 pt-3 mt-3">
+                                    <li className="border-t pt-3 mt-3" style={{borderColor: '#333333'}}>
                                         {auth.user ? (
                                             <>
-                                                <div className="text-sm text-gray-600 mb-3">
+                                                <div className="text-sm text-gray-300 mb-3">
                                                     Welcome, {auth.user.name}
                                                 </div>
                                                 <Link 

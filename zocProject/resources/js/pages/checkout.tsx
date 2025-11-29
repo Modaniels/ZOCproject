@@ -247,16 +247,17 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
     };
 
     const Footer = () => (
-        <footer className="py-16 px-4" style={{backgroundColor: '#1A1A1A', color: '#EDEDEC'}}>
-            <div className="max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div className="md:col-span-2">
-                        <div className="text-3xl font-bold mb-4" style={{color: '#F4C542', fontFamily: 'Space Grotesk, sans-serif'}}>
-                            ZOC Farm
+        <footer className="text-white py-16" style={{backgroundColor: '#1A1A1A'}}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div>
+                        <div className="flex items-center space-x-3 mb-6">
+                            <div className="text-2xl font-bold" style={{color: '#D4AF37', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                ZOC Farm
+                            </div>
                         </div>
                         <p className="text-gray-400 mb-6 leading-relaxed">
-                            Connecting farmers, investors, contractors and consumers through transparency, 
-                            sustainability, and community-driven agriculture.
+                            Zedjah Organic Crowd Farms - A systemized regenerative farming company specializing in organic food production and farm management from Kirinyaga County, Kenya.
                         </p>
                         <div className="flex space-x-4">
                             <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
@@ -273,39 +274,49 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                             </a>
                         </div>
                     </div>
-                    
+
                     <div>
-                        <h4 className="text-lg font-semibold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif'}}>Quick Links</h4>
-                        <ul className="space-y-2">
-                            <li><Link href="/" className="text-gray-400 hover:text-yellow-400 transition-colors">Home</Link></li>
-                            <li><Link href="/about" className="text-gray-400 hover:text-yellow-400 transition-colors">About</Link></li>
-                            <li><Link href="/services" className="text-gray-400 hover:text-yellow-400 transition-colors">Services</Link></li>
-                            <li><Link href="/products" className="text-gray-400 hover:text-yellow-400 transition-colors">Products</Link></li>
-                            <li><Link href="/contact" className="text-gray-400 hover:text-yellow-400 transition-colors">Contact</Link></li>
+                        <h3 className="text-lg font-bold mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>Quick Links</h3>
+                        <ul className="space-y-3">
+                            <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
+                            <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
+                            <li><Link href="/services" className="text-gray-400 hover:text-white transition-colors">Services</Link></li>
+                            <li><Link href="/products" className="text-gray-400 hover:text-white transition-colors">Products</Link></li>
+                            <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
                         </ul>
                     </div>
-                    
+
                     <div>
-                        <h4 className="text-lg font-semibold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif'}}>Contact Info</h4>
-                        <ul className="space-y-2 text-gray-400">
-                            <li>
+                        <h3 className="text-lg font-bold mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>Contact Info</h3>
+                        <ul className="space-y-3">
+                            <li className="text-gray-400">
                                 <i className="fas fa-map-marker-alt mr-2"></i>
-                                123 Farm Road, Green Valley
+                                020 Mutira, Kirinyaga County, Kenya
                             </li>
-                            <li>
+                            <li className="text-gray-400">
                                 <i className="fas fa-phone mr-2"></i>
-                                +1 (555) 123-4567
+                                +254-790-344-724
                             </li>
-                            <li>
+                            <li className="text-gray-400">
+                                <i className="fas fa-phone mr-2"></i>
+                                +254-741-122-375
+                            </li>
+                            <li className="text-gray-400">
+                                <i className="fas fa-phone mr-2"></i>
+                                +254-754-919-395
+                            </li>
+                            <li className="text-gray-400">
                                 <i className="fas fa-envelope mr-2"></i>
-                                info@zocfarm.com
+                                zedjahorganiccrowdfarms@gmail.com
                             </li>
                         </ul>
                     </div>
                 </div>
-                
-                <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-                    <p>&copy; 2024 ZOC Farm. All rights reserved.</p>
+
+                <div className="border-t border-gray-700 mt-12 pt-8 text-center">
+                    <p className="text-gray-400">
+                        &copy; 2025 Zedjah Organic Crowd Farms Ltd. All rights reserved.
+                    </p>
                 </div>
             </div>
         </footer>
@@ -330,25 +341,26 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                 
                 <div className="min-h-screen" style={{
                     fontFamily: 'Inter, sans-serif',
-                    backgroundColor: '#FDF8E3',
-                    color: '#333333'
+                    backgroundColor: '#FAFAFA',
+                    color: '#1F2937'
                 }}>
                     <Navigation />
 
                     <div className="pt-24 pb-16 px-4">
                         <div className="max-w-4xl mx-auto text-center">
-                            <div className="bg-white rounded-xl shadow-lg p-12 border border-gray-100">
+                            <div className="bg-white rounded-3xl p-12 hover:shadow-2xl transition-all duration-300" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB'}}>
                                 <div className="text-6xl mb-6">🛒</div>
-                                <h2 className="text-4xl font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                     Your cart is empty
                                 </h2>
+                                <div className="w-24 h-1 mx-auto mb-6" style={{backgroundColor: '#D4AF37'}}></div>
                                 <p className="text-gray-600 text-lg mb-8 leading-relaxed">
                                     Add some items to your cart before proceeding to checkout.
                                 </p>
                                 <Link
                                     href="/products"
-                                    className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-lg hover:opacity-90 transition duration-200"
-                                    style={{backgroundColor: '#3A4C2F'}}
+                                    className="inline-flex items-center rounded-lg px-10 py-5 text-white font-semibold transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
+                                    style={{backgroundColor: '#2E7D32', boxShadow: '0 4px 14px rgba(46, 125, 50, 0.39)'}}
                                 >
                                     <i className="fas fa-shopping-bag mr-2"></i>
                                     Continue Shopping
@@ -381,21 +393,22 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
             
             <div className="min-h-screen" style={{
                 fontFamily: 'Inter, sans-serif',
-                backgroundColor: '#FDF8E3',
-                color: '#333333'
+                backgroundColor: '#FAFAFA',
+                color: '#1F2937'
             }}>
                 <Navigation />
 
                 <div className="pt-24 pb-16 px-4">
                     <div className="max-w-6xl mx-auto">
                         <div className="mb-8">
-                            <h1 className="text-3xl sm:text-4xl font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                            <h1 className="text-5xl md:text-6xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                 Checkout
                             </h1>
+                            <div className="w-24 h-1 mb-6" style={{backgroundColor: '#D4AF37'}}></div>
                             <div className="flex items-center space-x-2 text-sm text-gray-600">
                                 <Link href="/cart" className="hover:text-yellow-600">Cart</Link>
                                 <span>→</span>
-                                <span className="font-semibold" style={{color: '#3A4C2F'}}>Checkout</span>
+                                <span className="font-semibold" style={{color: '#2E7D32'}}>Checkout</span>
                             </div>
                         </div>
 
@@ -405,7 +418,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                 <form onSubmit={handleCheckout} className="bg-white rounded-xl shadow-lg p-4 sm:p-8 border border-gray-100">
                                     {/* Customer Information */}
                                     <div className="mb-8">
-                                        <h2 className="text-xl sm:text-2xl font-bold mb-6 flex items-center" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                        <h2 className="text-xl sm:text-2xl font-bold mb-6 flex items-center" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                             <UserIcon className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
                                             Customer Information
                                         </h2>
@@ -421,7 +434,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                                     value={formData.firstName}
                                                     onChange={handleInputChange}
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                                    style={{'--tw-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                                    style={{'--tw-ring-color': '#2E7D32'} as React.CSSProperties}
                                                     required
                                                 />
                                             </div>
@@ -436,7 +449,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                                     value={formData.lastName}
                                                     onChange={handleInputChange}
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                                    style={{'--tw-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                                    style={{'--tw-ring-color': '#2E7D32'} as React.CSSProperties}
                                                     required
                                                 />
                                             </div>
@@ -451,7 +464,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                                     value={formData.email}
                                                     onChange={handleInputChange}
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                                    style={{'--tw-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                                    style={{'--tw-ring-color': '#2E7D32'} as React.CSSProperties}
                                                     required
                                                 />
                                             </div>
@@ -467,7 +480,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                                     onChange={handleInputChange}
                                                     placeholder="+254712345678"
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                                    style={{'--tw-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                                    style={{'--tw-ring-color': '#2E7D32'} as React.CSSProperties}
                                                     required
                                                 />
                                             </div>
@@ -476,7 +489,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
 
                                     {/* Delivery Address */}
                                     <div className="mb-8">
-                                        <h2 className="text-2xl font-bold mb-6 flex items-center" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                        <h2 className="text-2xl font-bold mb-6 flex items-center" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                             <MapPinIcon className="w-6 h-6 mr-2" />
                                             Delivery Address
                                         </h2>
@@ -492,7 +505,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                                     value={formData.address}
                                                     onChange={handleInputChange}
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                                    style={{'--tw-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                                    style={{'--tw-ring-color': '#2E7D32'} as React.CSSProperties}
                                                     required
                                                 />
                                             </div>
@@ -508,7 +521,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                                         value={formData.city}
                                                         onChange={handleInputChange}
                                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                                        style={{'--tw-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                                        style={{'--tw-ring-color': '#2E7D32'} as React.CSSProperties}
                                                         required
                                                     />
                                                 </div>
@@ -523,7 +536,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                                         value={formData.county}
                                                         onChange={handleInputChange}
                                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                                        style={{'--tw-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                                        style={{'--tw-ring-color': '#2E7D32'} as React.CSSProperties}
                                                         required
                                                     />
                                                 </div>
@@ -539,7 +552,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                                     onChange={handleInputChange}
                                                     rows={3}
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                                                    style={{'--tw-ring-color': '#3A4C2F'} as React.CSSProperties}
+                                                    style={{'--tw-ring-color': '#2E7D32'} as React.CSSProperties}
                                                     placeholder="Any special delivery instructions..."
                                                 />
                                             </div>
@@ -548,13 +561,13 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
 
                                     {/* Payment Method */}
                                     <div className="mb-8">
-                                        <h2 className="text-2xl font-bold mb-6 flex items-center" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                        <h2 className="text-2xl font-bold mb-6 flex items-center" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                             <CreditCardIcon className="w-6 h-6 mr-2" />
                                             Payment Method
                                         </h2>
                                         <div className="space-y-4">
                                             <div className="flex items-center p-4 border-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors"
-                                                 style={{borderColor: paymentMethod === 'mpesa' ? '#3A4C2F' : '#E5E7EB'}}
+                                                 style={{borderColor: paymentMethod === 'mpesa' ? '#2E7D32' : '#E5E7EB'}}
                                                  onClick={() => setPaymentMethod('mpesa')}>
                                                 <input
                                                     type="radio"
@@ -565,14 +578,14 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                                     onChange={(e) => setPaymentMethod(e.target.value)}
                                                     className="mr-3"
                                                 />
-                                                <DevicePhoneMobileIcon className="w-8 h-8 mr-3" style={{color: '#3A4C2F'}} />
+                                                <DevicePhoneMobileIcon className="w-8 h-8 mr-3" style={{color: '#2E7D32'}} />
                                                 <div>
                                                     <h3 className="font-semibold text-lg">M-Pesa</h3>
                                                     <p className="text-gray-600">Pay securely with M-Pesa mobile money</p>
                                                 </div>
                                             </div>
                                             <div className="flex items-center p-4 border-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors"
-                                                 style={{borderColor: paymentMethod === 'cod' ? '#3A4C2F' : '#E5E7EB'}}
+                                                 style={{borderColor: paymentMethod === 'cod' ? '#2E7D32' : '#E5E7EB'}}
                                                  onClick={() => setPaymentMethod('cod')}>
                                                 <input
                                                     type="radio"
@@ -583,7 +596,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                                     onChange={(e) => setPaymentMethod(e.target.value)}
                                                     className="mr-3"
                                                 />
-                                                <i className="fas fa-money-bill-wave text-2xl mr-3" style={{color: '#3A4C2F'}}></i>
+                                                <i className="fas fa-money-bill-wave text-2xl mr-3" style={{color: '#2E7D32'}}></i>
                                                 <div>
                                                     <h3 className="font-semibold text-lg">Cash on Delivery</h3>
                                                     <p className="text-gray-600">Pay when your order is delivered</p>
@@ -614,7 +627,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                                     </div>
                                                 )}
                                                 {paymentStatus === 'success' && (
-                                                    <div className="flex items-center text-green-600">
+                                                    <div className="flex items-center" style={{color: '#2E7D32'}}>
                                                         <i className="fas fa-check-circle text-2xl mr-3"></i>
                                                         <span className="font-semibold">Payment Successful!</span>
                                                     </div>
@@ -676,10 +689,10 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                     <button
                                         type="submit"
                                         disabled={isProcessing || paymentStatus === 'checking'}
-                                        className={`w-full py-4 px-6 rounded-lg font-semibold text-white text-lg transition duration-200 ${
-                                            (isProcessing || paymentStatus === 'checking') ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90'
+                                        className={`w-full rounded-lg px-10 py-5 font-semibold text-white text-lg transition-all duration-300 ${
+                                            (isProcessing || paymentStatus === 'checking') ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl transform hover:-translate-y-1'
                                         }`}
-                                        style={{backgroundColor: '#3A4C2F'}}
+                                        style={{backgroundColor: '#2E7D32', boxShadow: '0 4px 14px rgba(46, 125, 50, 0.39)'}}
                                     >
                                         {isProcessing || paymentStatus === 'checking' ? (
                                             <span className="flex items-center justify-center">
@@ -697,8 +710,8 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                             </div>
 
                             {/* Order Summary */}
-                            <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 h-fit">
-                                <h2 className="text-2xl font-bold mb-6" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                            <div className="bg-white rounded-3xl p-10 h-fit hover:shadow-2xl transition-all duration-300" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB'}}>
+                                <h2 className="text-2xl font-bold mb-6" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                     Order Summary
                                 </h2>
                                 
@@ -723,7 +736,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                                 <p className="text-gray-600 text-sm">Qty: {item.quantity}</p>
                                             </div>
                                             <div className="text-right">
-                                                <p className="font-semibold" style={{color: '#3A4C2F'}}>
+                                                <p className="font-semibold" style={{color: '#2E7D32'}}>
                                                     {formatPrice(item.quantity * item.price)}
                                                 </p>
                                             </div>
@@ -738,27 +751,27 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Delivery:</span>
-                                        <span className="text-green-600">Free</span>
+                                        <span style={{color: '#2E7D32'}}>Free</span>
                                     </div>
                                     <div className="border-t pt-2">
                                         <div className="flex justify-between font-bold text-lg">
                                             <span>Total:</span>
-                                            <span style={{color: '#3A4C2F'}}>{formatPrice(total)}</span>
+                                            <span style={{color: '#2E7D32'}}>{formatPrice(total)}</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="text-sm text-gray-600 space-y-2">
                                     <p className="flex items-center">
-                                        <i className="fas fa-truck mr-2 text-green-600"></i>
+                                        <i className="fas fa-truck mr-2" style={{color: '#2E7D32'}}></i>
                                         Free delivery on all orders
                                     </p>
                                     <p className="flex items-center">
-                                        <i className="fas fa-shield-alt mr-2 text-green-600"></i>
+                                        <i className="fas fa-shield-alt mr-2" style={{color: '#2E7D32'}}></i>
                                         Secure payment processing
                                     </p>
                                     <p className="flex items-center">
-                                        <i className="fas fa-clock mr-2 text-green-600"></i>
+                                        <i className="fas fa-clock mr-2" style={{color: '#2E7D32'}}></i>
                                         Delivery within 2-3 business days
                                     </p>
                                 </div>
@@ -767,7 +780,7 @@ export default function Checkout({ cartItems, total, userDetails }: Props) {
                     </div>
                 </div>
 
-                <div className="py-20 px-4" style={{backgroundColor: '#3A4C2F'}}>
+                <div className="py-24 px-4" style={{backgroundColor: '#2E7D32'}}>
                     <div className="max-w-4xl mx-auto">
                         <Newsletter />
                     </div>

@@ -98,7 +98,7 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
 
             <div className="min-h-screen" style={{
                 fontFamily: 'Inter, sans-serif',
-                backgroundColor: '#FDF8E3',
+                backgroundColor: '#FAFAFA',
             }}>
                 {/* Header */}
                 <nav className="bg-white shadow-sm border-b">
@@ -111,15 +111,15 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                             </div>
 
                             <div className="hidden md:flex items-center space-x-8">
-                                <Link href="/" className="text-gray-700 hover:text-green-800">Home</Link>
-                                <Link href="/about" className="text-gray-700 hover:text-green-800">About</Link>
-                                <Link href="/services" className="text-gray-700 hover:text-green-800">Services</Link>
-                                <Link href="/products" className="font-semibold" style={{color: '#3A4C2F'}}>Products</Link>
-                                <Link href="/contact" className="text-gray-700 hover:text-green-800">Contact</Link>
+                                <Link href="/" className="text-gray-700 transition-colors" onMouseEnter={(e) => e.currentTarget.style.color = '#2E7D32'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Home</Link>
+                                <Link href="/about" className="text-gray-700 transition-colors" onMouseEnter={(e) => e.currentTarget.style.color = '#2E7D32'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>About</Link>
+                                <Link href="/services" className="text-gray-700 transition-colors" onMouseEnter={(e) => e.currentTarget.style.color = '#2E7D32'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Services</Link>
+                                <Link href="/products" className="font-semibold" style={{color: '#2E7D32'}}>Products</Link>
+                                <Link href="/contact" className="text-gray-700 transition-colors" onMouseEnter={(e) => e.currentTarget.style.color = '#2E7D32'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Contact</Link>
                             </div>
 
                             <div className="flex items-center space-x-4">
-                                <Link href="/cart" className="relative p-2 text-gray-700 hover:text-green-800">
+                                <Link href="/cart" className="relative p-2 text-gray-700 transition-colors" onMouseEnter={(e) => e.currentTarget.style.color = '#2E7D32'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>
                                     <ShoppingCartIcon className="w-6 h-6" />
                                 </Link>
                             </div>
@@ -131,13 +131,15 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                 <div className="bg-white border-b">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                         <nav className="flex items-center space-x-2 text-sm">
-                            <Link href="/" className="text-gray-500 hover:text-green-600">Home</Link>
+                            <Link href="/" className="text-gray-500 transition-colors" style={{}}  onMouseEnter={(e) => e.currentTarget.style.color = '#2E7D32'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Home</Link>
                             <span className="text-gray-400">/</span>
-                            <Link href="/products" className="text-gray-500 hover:text-green-600">Products</Link>
+                            <Link href="/products" className="text-gray-500 transition-colors" onMouseEnter={(e) => e.currentTarget.style.color = '#2E7D32'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>Products</Link>
                             <span className="text-gray-400">/</span>
                             <Link 
                                 href={`/products?category=${product.category.slug}`} 
-                                className="text-gray-500 hover:text-green-600"
+                                className="text-gray-500 transition-colors"
+                                onMouseEnter={(e) => e.currentTarget.style.color = '#2E7D32'} 
+                                onMouseLeave={(e) => e.currentTarget.style.color = ''}
                             >
                                 {product.category.name}
                             </Link>
@@ -169,9 +171,10 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                                         <button
                                             key={image.id}
                                             onClick={() => setSelectedImageIndex(index)}
-                                            className={`bg-white rounded border-2 overflow-hidden ${
-                                                selectedImageIndex === index ? 'border-green-500' : 'border-gray-200 hover:border-gray-300'
-                                            }`}
+                                            className="bg-white rounded border-2 overflow-hidden"
+                                            style={{borderColor: selectedImageIndex === index ? '#2E7D32' : '#E5E7EB'}}
+                                            onMouseEnter={(e) => {if (selectedImageIndex !== index) e.currentTarget.style.borderColor = '#D1D5DB';}}
+                                            onMouseLeave={(e) => {if (selectedImageIndex !== index) e.currentTarget.style.borderColor = '#E5E7EB';}}
                                         >
                                             <img
                                                 src={image.url}
@@ -191,14 +194,17 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                                 <div className="mb-2">
                                     <Link 
                                         href={`/products?category=${product.category.slug}`}
-                                        className="text-green-600 text-sm font-medium hover:text-green-700"
+                                        className="text-sm font-medium transition-colors"
+                                        style={{color: '#2E7D32'}}
+                                        onMouseEnter={(e) => e.currentTarget.style.color = '#1F5F23'}
+                                        onMouseLeave={(e) => e.currentTarget.style.color = '#2E7D32'}
                                     >
                                         {product.category.name}
                                     </Link>
                                 </div>
 
                                 {/* Product name */}
-                                <h1 className="text-3xl font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>{product.name}</h1>
+                                <h1 className="text-3xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>{product.name}</h1>
 
                                 {/* Product rating (placeholder) */}
                                 <div className="flex items-center mb-4">
@@ -216,7 +222,7 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                                 {/* Price */}
                                 <div className="mb-6">
                                     <div className="flex items-center space-x-3">
-                                        <span className="text-3xl font-bold" style={{color: '#F4C542'}}>
+                                        <span className="text-3xl font-bold" style={{color: '#D4AF37'}}>
                                             {product.formatted_price}
                                         </span>
                                         {product.formatted_compare_price && (
@@ -252,7 +258,7 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                                     </div>
                                     <div className="flex justify-between">
                                         <span className="text-gray-600">Availability:</span>
-                                        <span className={`font-medium ${product.quantity > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                        <span className="font-medium" style={{color: product.quantity > 0 ? '#2E7D32' : '#DC2626'}}>
                                             {product.quantity > 0 ? 'In Stock' : 'Out of Stock'}
                                         </span>
                                     </div>
@@ -316,15 +322,15 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                                 <div className="mt-6 pt-6 border-t border-gray-200">
                                     <div className="space-y-2 text-sm text-gray-600">
                                         <div className="flex items-center">
-                                            <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                                            <span className="w-2 h-2 rounded-full mr-2" style={{backgroundColor: '#2E7D32'}}></span>
                                             Free delivery on orders over KSh 2,000
                                         </div>
                                         <div className="flex items-center">
-                                            <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                                            <span className="w-2 h-2 rounded-full mr-2" style={{backgroundColor: '#2E7D32'}}></span>
                                             Fresh guarantee
                                         </div>
                                         <div className="flex items-center">
-                                            <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                                            <span className="w-2 h-2 rounded-full mr-2" style={{backgroundColor: '#2E7D32'}}></span>
                                             Organic certified
                                         </div>
                                     </div>
@@ -333,7 +339,7 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
 
                             {/* Product Description */}
                             <div className="bg-white rounded-lg shadow p-6 mt-6">
-                                <h3 className="text-lg font-semibold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>Product Description</h3>
+                                <h3 className="text-lg font-semibold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>Product Description</h3>
                                 <div className="prose prose-sm text-gray-700">
                                     <p>{product.description}</p>
                                 </div>
@@ -344,7 +350,7 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                     {/* Related Products */}
                     {relatedProducts.length > 0 && (
                         <div className="mt-16">
-                            <h2 className="text-2xl font-bold mb-8" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>Related Products</h2>
+                            <h2 className="text-2xl font-bold mb-8" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>Related Products</h2>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                                 {relatedProducts.map((relatedProduct) => (
                                     <div key={relatedProduct.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
@@ -355,11 +361,11 @@ export default function ProductDetail({ product, relatedProducts }: Props) {
                                         </Link>
                                         <div className="p-4">
                                             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                                                <Link href={`/products/${relatedProduct.slug}`} className="hover:text-green-600">
+                                                <Link href={`/products/${relatedProduct.slug}`} className="transition-colors" onMouseEnter={(e) => e.currentTarget.style.color = '#2E7D32'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>
                                                     {relatedProduct.name}
                                                 </Link>
                                             </h3>
-                                            <p className="text-green-600 font-bold">{relatedProduct.formatted_price}</p>
+                                            <p className="font-bold" style={{color: '#2E7D32'}}>{relatedProduct.formatted_price}</p>
                                         </div>
                                     </div>
                                 ))}

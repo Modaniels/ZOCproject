@@ -104,8 +104,8 @@ export default function ZOCFarm() {
             </Head>
             <div className="min-h-screen bg-cream-white font-body text-charcoal" style={{
                 fontFamily: 'Inter, sans-serif',
-                backgroundColor: '#FDF8E3',
-                color: '#333333'
+                backgroundColor: '#FAFAFA',
+                color: '#1F2937'
             } as React.CSSProperties}>
                 {/* Header & Navigation */}
                 <Navigation />
@@ -135,28 +135,28 @@ export default function ZOCFarm() {
                     </div>
                     
                     {/* Overlay */}
-                    <div className="hero-overlay absolute inset-0" style={{backgroundColor: 'rgba(58, 76, 47, 0.85)'}}></div>
+                    <div className="hero-overlay absolute inset-0" style={{backgroundColor: 'rgba(31, 41, 55, 0.75)'}}></div>
                     
                     {/* Content */}
                     <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-up" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
                             Inspiring the <br />
-                            <span style={{color: '#F4C542'}}>Agricultural Value Chain</span>
+                            <span style={{color: '#D4AF37', textShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'}}>Agricultural Value Chain</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-                            Uniting farmers, investors, contractors and consumers under a single transparent platform. We specialize in organic food production from sourcing inputs to delivering retail-ready products.
+                            From farm to table, we deliver organic food production and farm management with transparency, sustainability, and community at heart.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{animationDelay: '0.4s'}}>
                             <a
                                 href="/products"
-                                className="px-8 py-4 rounded-full font-semibold text-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-400/30 inline-block transform hover:-translate-y-1"
-                                style={{backgroundColor: '#F4C542', color: '#333333'}}
+                                className="px-10 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl inline-block transform hover:-translate-y-1"
+                                style={{backgroundColor: '#2E7D32', color: '#FFFFFF', boxShadow: '0 4px 14px 0 rgba(46, 125, 50, 0.39)'}}
                             >
                                 Shop Now
                             </a>
                             <a
                                 href="/contact"
-                                className="px-8 py-4 rounded-full font-semibold text-lg transition-all duration-500 hover:scale-105 hover:bg-white hover:text-gray-800 hover:shadow-2xl hover:shadow-white/30 inline-block border-2 border-white text-white transform hover:-translate-y-1"
+                                className="px-10 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 hover:bg-white hover:shadow-2xl inline-block border-2 border-white text-white transform hover:-translate-y-1 hover:text-gray-800"
                             >
                                 Partner With Us
                             </a>
@@ -171,179 +171,188 @@ export default function ZOCFarm() {
                     </div>
                 </section>
 
-                {/* Company Introduction */}
-                <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
+                {/* What We Do */}
+                {/* What We Do */}
+                <section id="about" className="py-24 px-4 sm:px-6 lg:px-8" style={{backgroundColor: '#FFFFFF'}}>
                     <div className="max-w-7xl mx-auto">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                Cultivating Excellence Since Day One
+                        <div className="text-center mb-20">
+                            <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                What We Do
                             </h2>
-                            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                                At Zedjah Organic Crowd Farms Ltd, we're more than just farmers –
-                                we're innovators, community builders, and environmental stewards
-                                committed to revolutionizing agriculture through sustainable
-                                practices and cutting-edge technology.
-                            </p>
+                            <div className="w-24 h-1 mx-auto" style={{backgroundColor: '#D4AF37'}}></div>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-12 items-center">
-                            <div>
-                                <h3 className="text-2xl font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    Our Mission
-                                </h3>
-                                <p className="text-gray-600 mb-6 leading-relaxed">
-                                    To champion regenerative farming practices that produce healthy food, protect the environment and uplift smallholder farmers through skills training, technical support and reliable market access. We manage every stage of the food system from sourcing inputs to delivering retail-ready products.
-                                </p>
-
-                                <h3 className="text-2xl font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    Our Vision
+                        <div className="grid md:grid-cols-3 gap-10">
+                            {/* Farm Management Card */}
+                            <div className="group bg-white p-10 rounded-3xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #F3F4F6'}}>
+                                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300" style={{backgroundColor: '#E8F5E9'}}>
+                                    <i className="fas fa-seedling text-3xl" style={{color: '#2E7D32'}}></i>
+                                </div>
+                                <h3 className="text-2xl font-bold mb-5" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Farm Management
                                 </h3>
                                 <p className="text-gray-600 leading-relaxed">
-                                    To transform the agricultural value chain by uniting farmers, investors, contractors and consumers under a single transparent platform, ensuring quality, sustainability and fair margins at every link.
+                                    Comprehensive farm management services implementing regenerative practices and agroecology principles for sustainable agriculture.
                                 </p>
                             </div>
 
-                            <div className="bg-white rounded-2xl p-8 shadow-lg transition-transform hover:scale-105">
-                                <div className="grid grid-cols-2 gap-6 text-center">
-                                    <div>
-                                        <div className="text-3xl font-bold mb-2" style={{color: '#F4C542'}}>
-                                            1,000+
-                                        </div>
-                                        <div className="text-gray-600">Farmers United</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-3xl font-bold mb-2" style={{color: '#7BB661'}}>
-                                            50+
-                                        </div>
-                                        <div className="text-gray-600">Investors Partnered</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-3xl font-bold mb-2" style={{color: '#6B4E2E'}}>25+</div>
-                                        <div className="text-gray-600">Contractors Engaged</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-3xl font-bold mb-2" style={{color: '#3A4C2F'}}>
-                                            5,000+
-                                        </div>
-                                        <div className="text-gray-600">Consumers Served</div>
-                                    </div>
+                            {/* Organic Food Production Card */}
+                            <div className="group bg-white p-10 rounded-3xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #F3F4F6'}}>
+                                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300" style={{backgroundColor: '#FFF8E1'}}>
+                                    <i className="fas fa-leaf text-3xl" style={{color: '#F57F17'}}></i>
                                 </div>
+                                <h3 className="text-2xl font-bold mb-5" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Organic Food Production
+                                </h3>
+                                <p className="text-gray-600 leading-relaxed">
+                                    Complete organic food production from sourcing quality inputs to delivering retail-ready products with full traceability.
+                                </p>
+                            </div>
+
+                            {/* Training & Consulting Card */}
+                            <div className="group bg-white p-10 rounded-3xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #F3F4F6'}}>
+                                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300" style={{backgroundColor: '#E3F2FD'}}>
+                                    <i className="fas fa-users text-3xl" style={{color: '#1565C0'}}></i>
+                                </div>
+                                <h3 className="text-2xl font-bold mb-5" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Training & Consulting
+                                </h3>
+                                <p className="text-gray-600 leading-relaxed">
+                                    Expert guidance on sustainable farming practices, helping communities build resilience through safe and healthy food production.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Investment Focus Areas */}
-                <section id="services" className="py-20 bg-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                Five Strategic Growth Opportunities
+                {/* Our Core Values */}
+                <section className="py-24 px-4 sm:px-6 lg:px-8" style={{backgroundColor: '#F9FAFB'}}>
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-20">
+                            <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                Our Core Values
                             </h2>
-                            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                                Each area strengthens our integrated value chain by guaranteeing transparent sourcing, efficient market access and environmental stewardship
+                            <div className="w-24 h-1 mx-auto mb-6" style={{backgroundColor: '#D4AF37'}}></div>
+                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                                The principles that guide everything we do
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-1 lg:grid-cols-5 gap-8">
-                            <div className="text-center p-8 rounded-2xl transition-transform hover:scale-105 border-2" 
-                                 style={{backgroundColor: '#FDF8E3', borderColor: '#3A4C2F'}}>
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" 
-                                     style={{backgroundColor: '#3A4C2F', color: 'white'}}>
-                                    <i className="fas fa-leaf text-2xl"></i>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                            {/* Sustainability Card */}
+                            <div className="group bg-white p-8 rounded-3xl hover:shadow-2xl transition-all duration-300" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.06)', border: '1px solid #E5E7EB'}}>
+                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300" style={{backgroundColor: '#E8F5E9'}}>
+                                    <i className="fas fa-leaf text-2xl" style={{color: '#2E7D32'}}></i>
                                 </div>
-                                <h3 className="text-lg font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    Organic Food Production
+                                <h3 className="text-xl font-bold mb-4 text-center" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Accountability
                                 </h3>
-                                <p className="text-gray-600 text-sm">
-                                    Complete organic food production systems ensuring quality, sustainability and traceability.
+                                <p className="text-gray-600 text-sm leading-relaxed">
+                                    Transparent in every value chain through the engagement level.
                                 </p>
                             </div>
 
-                            <div className="text-center p-8 rounded-2xl transition-transform hover:scale-105 border-2" 
-                                 style={{backgroundColor: '#FDF8E3', borderColor: '#F4C542'}}>
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" 
-                                     style={{backgroundColor: '#F4C542', color: '#333333'}}>
-                                    <i className="fas fa-tractor text-2xl"></i>
+                            {/* Innovation Card */}
+                            <div className="group bg-white p-8 rounded-3xl hover:shadow-2xl transition-all duration-300" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.06)', border: '1px solid #E5E7EB'}}>
+                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300" style={{backgroundColor: '#FFF8E1'}}>
+                                    <i className="fas fa-lightbulb text-2xl" style={{color: '#F57F17'}}></i>
                                 </div>
-                                <h3 className="text-lg font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    General Agriculture Development
+                                <h3 className="text-xl font-bold mb-4 text-center" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Innovation
                                 </h3>
-                                <p className="text-gray-600 text-sm">
-                                    Modernizing farming practices through technology integration and cooperative development.
+                                <p className="text-gray-600 text-sm leading-relaxed">
+                                    Steadfast at intuitive solution thinking to remain sustainable.
                                 </p>
                             </div>
 
-                            <div className="text-center p-8 rounded-2xl transition-transform hover:scale-105 border-2" 
-                                 style={{backgroundColor: '#FDF8E3', borderColor: '#7BB661'}}>
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" 
-                                     style={{backgroundColor: '#7BB661', color: 'white'}}>
-                                    <i className="fas fa-carrot text-2xl"></i>
+                            {/* Community Card */}
+                            <div className="group bg-white p-8 rounded-3xl hover:shadow-2xl transition-all duration-300" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.06)', border: '1px solid #E5E7EB'}}>
+                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300" style={{backgroundColor: '#E3F2FD'}}>
+                                    <i className="fas fa-handshake text-2xl" style={{color: '#1565C0'}}></i>
                                 </div>
-                                <h3 className="text-lg font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    Vegetable Cultivation
+                                <h3 className="text-xl font-bold mb-4 text-center" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Integrity
                                 </h3>
-                                <p className="text-gray-600 text-sm">
-                                    High-value vegetable production with greenhouse technology and direct restaurant supply.
+                                <p className="text-gray-600 text-sm leading-relaxed">
+                                    Accommodating humanity and human rights in peace, freedom and democracy.
                                 </p>
                             </div>
 
-                            <div className="text-center p-8 rounded-2xl transition-transform hover:scale-105 border-2" 
-                                 style={{backgroundColor: '#FDF8E3', borderColor: '#6B4E2E'}}>
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" 
-                                     style={{backgroundColor: '#6B4E2E', color: 'white'}}>
-                                    <i className="fas fa-store text-2xl"></i>
+                            {/* Quality Card */}
+                            <div className="group bg-white p-8 rounded-3xl hover:shadow-2xl transition-all duration-300" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.06)', border: '1px solid #E5E7EB'}}>
+                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300" style={{backgroundColor: '#FFF3E0'}}>
+                                    <i className="fas fa-dollar-sign text-2xl" style={{color: '#E65100'}}></i>
                                 </div>
-                                <h3 className="text-lg font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    Retail Distribution Networks
+                                <h3 className="text-xl font-bold mb-4 text-center" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Value For Money
                                 </h3>
-                                <p className="text-gray-600 text-sm">
-                                    Strategic partnerships connecting organic produce directly to consumers through digital marketplaces.
-                                </p>
-                            </div>
-
-                            <div className="text-center p-8 rounded-2xl transition-transform hover:scale-105 border-2" 
-                                 style={{backgroundColor: '#FDF8E3', borderColor: '#333333'}}>
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" 
-                                     style={{backgroundColor: '#333333', color: 'white'}}>
-                                    <i className="fas fa-truck text-2xl"></i>
-                                </div>
-                                <h3 className="text-lg font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    Logistics Optimization
-                                </h3>
-                                <p className="text-gray-600 text-sm">
-                                    Advanced supply chain solutions with cold storage and real-time tracking systems.
+                                <p className="text-gray-600 text-sm leading-relaxed">
+                                    Assuring ROI, reducing and sustaining risks for prospective agribusiness.
                                 </p>
                             </div>
                         </div>
 
-                        <div className="text-center mt-12">
+                        {/* Our Commitment */}
+                        <div className="max-w-4xl mx-auto text-center">
+                            <div className="bg-white p-12 rounded-3xl" style={{boxShadow: '0 20px 60px rgba(0,0,0,0.1)', border: '1px solid #E5E7EB'}}>
+                                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-8" style={{backgroundColor: '#E8F5E9'}}>
+                                    <i className="fas fa-bullseye text-3xl" style={{color: '#2E7D32'}}></i>
+                                </div>
+                                <h3 className="text-3xl font-bold mb-6" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Our Commitment
+                                </h3>
+                                <p className="text-lg text-gray-600 leading-relaxed">
+                                    To be the leading farm management and organic food industry in sustainable agriculture, prioritizing agroecology for the world we need to create.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Products Showcase */}
+                <section id="products" className="py-24 px-4 sm:px-6 lg:px-8" style={{backgroundColor: '#FFFFFF'}}>
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                Our Store
+                            </h2>
+                            <div className="w-24 h-1 mx-auto mb-6" style={{backgroundColor: '#D4AF37'}}></div>
+                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                                Everything you need for modern sustainable farming—from organic food products and farm inputs to tools, machinery, and innovative farming technology
+                            </p>
+                        </div>
+
+                        <div className="text-center">
                             <a
-                                href="/services"
-                                className="px-8 py-4 rounded-full font-semibold transition-transform hover:scale-105 inline-block text-white"
-                                style={{backgroundColor: '#3A4C2F'}}
+                                href="/products"
+                                className="inline-block px-10 py-5 rounded-lg font-semibold transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 text-white"
+                                style={{
+                                    backgroundColor: '#2E7D32',
+                                    boxShadow: '0 4px 14px rgba(46, 125, 50, 0.39)'
+                                }}
                             >
-                                Explore Strategic Opportunities
+                                Explore Our Store
                             </a>
                         </div>
                     </div>
                 </section>
 
                 {/* Impact Snapshot */}
-                <section className="py-20 text-white" style={{backgroundColor: '#3A4C2F'}}>
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
+                <section className="py-24 px-4 sm:px-6 lg:px-8 text-white" style={{backgroundColor: '#1F2937'}}>
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-20">
+                            <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
                                 Our Impact in Numbers
                             </h2>
-                            <p className="text-xl text-gray-200">
+                            <div className="w-24 h-1 mx-auto mb-6" style={{backgroundColor: '#D4AF37'}}></div>
+                            <p className="text-xl text-gray-300">
                                 Measurable results that speak to our commitment to excellence
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            <div className="text-center">
-                                <div className="text-6xl font-bold mb-4" style={{color: '#F4C542'}}>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                            <div className="text-center p-6 rounded-2xl transition-transform duration-300 hover:-translate-y-2">
+                                <div className="text-6xl font-bold mb-4" style={{color: '#D4AF37', textShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'}}>
                                     +40%
                                 </div>
                                 <h3 className="text-xl font-semibold mb-2">Yield Increase</h3>
@@ -352,8 +361,8 @@ export default function ZOCFarm() {
                                 </p>
                             </div>
 
-                            <div className="text-center">
-                                <div className="text-6xl font-bold mb-4" style={{color: '#F4C542'}}>
+                            <div className="text-center p-6 rounded-2xl transition-transform duration-300 hover:-translate-y-2">
+                                <div className="text-6xl font-bold mb-4" style={{color: '#D4AF37', textShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'}}>
                                     +25%
                                 </div>
                                 <h3 className="text-xl font-semibold mb-2">Price Premium</h3>
@@ -362,16 +371,16 @@ export default function ZOCFarm() {
                                 </p>
                             </div>
 
-                            <div className="text-center">
-                                <div className="text-6xl font-bold mb-4" style={{color: '#F4C542'}}>85%</div>
+                            <div className="text-center p-6 rounded-2xl transition-transform duration-300 hover:-translate-y-2">
+                                <div className="text-6xl font-bold mb-4" style={{color: '#D4AF37', textShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'}}>85%</div>
                                 <h3 className="text-xl font-semibold mb-2">Soil Health</h3>
                                 <p className="text-gray-300">
                                     Improvement in soil quality and nutrient content
                                 </p>
                             </div>
 
-                            <div className="text-center">
-                                <div className="text-6xl font-bold mb-4" style={{color: '#F4C542'}}>50%</div>
+                            <div className="text-center p-6 rounded-2xl transition-transform duration-300 hover:-translate-y-2">
+                                <div className="text-6xl font-bold mb-4" style={{color: '#D4AF37', textShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'}}>50%</div>
                                 <h3 className="text-xl font-semibold mb-2">Water Savings</h3>
                                 <p className="text-gray-300">
                                     Reduction in water usage through efficient irrigation
@@ -379,11 +388,11 @@ export default function ZOCFarm() {
                             </div>
                         </div>
 
-                        <div className="text-center mt-12">
+                        <div className="text-center mt-16">
                             <a
                                 href="/about"
-                                className="bg-white px-8 py-4 rounded-full font-semibold transition-transform hover:scale-105 inline-block"
-                                style={{color: '#3A4C2F'}}
+                                className="inline-block bg-white px-10 py-5 rounded-lg font-semibold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl"
+                                style={{color: '#1F2937', boxShadow: '0 4px 14px rgba(255, 255, 255, 0.2)'}}
                             >
                                 View Full Impact Report
                             </a>
@@ -392,32 +401,37 @@ export default function ZOCFarm() {
                 </section>
 
                 {/* Footer */}
-                <footer className="text-white py-16" style={{backgroundColor: '#333333'}}>
+                <footer className="text-white py-20" style={{backgroundColor: '#1A1A1A'}}>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         {/* Newsletter Section */}
                         <Newsletter />
 
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                             <div>
                                 <div className="flex items-center space-x-3 mb-6">
-                                    <div className="text-2xl font-bold" style={{color: '#F4C542', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    <img 
+                                        src="/images/logo.png" 
+                                        alt="ZOC Farm Logo" 
+                                        className="h-12 w-auto"
+                                    />
+                                    <div className="text-2xl font-bold" style={{color: '#D4AF37', fontFamily: 'Space Grotesk, sans-serif'}}>
                                         ZOC Farm
                                     </div>
                                 </div>
                                 <p className="text-gray-400 mb-6 leading-relaxed">
-                                    Zedjah Organic Crowd Farms Ltd - Transforming the agricultural value chain by uniting farmers, investors, contractors and consumers under a single transparent platform from Kirinyaga County.
+                                    Zedjah Organic Crowd Farms - A systemized regenerative farming company specializing in organic food production and farm management from Kirinyaga County, Kenya.
                                 </p>
                                 <div className="flex space-x-4">
-                                    <a href="#" className="text-gray-400 transition-colors" style={{'--hover-color': '#F4C542'} as React.CSSProperties}>
+                                    <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
                                         <i className="fab fa-facebook-f text-xl"></i>
                                     </a>
-                                    <a href="#" className="text-gray-400 transition-colors" style={{'--hover-color': '#F4C542'} as React.CSSProperties}>
+                                    <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
                                         <i className="fab fa-twitter text-xl"></i>
                                     </a>
-                                    <a href="#" className="text-gray-400 transition-colors" style={{'--hover-color': '#F4C542'} as React.CSSProperties}>
+                                    <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
                                         <i className="fab fa-instagram text-xl"></i>
                                     </a>
-                                    <a href="#" className="text-gray-400 transition-colors" style={{'--hover-color': '#F4C542'} as React.CSSProperties}>
+                                    <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
                                         <i className="fab fa-linkedin-in text-xl"></i>
                                     </a>
                                 </div>
@@ -454,15 +468,23 @@ export default function ZOCFarm() {
                                 <ul className="space-y-3">
                                     <li className="text-gray-400">
                                         <i className="fas fa-map-marker-alt mr-2"></i>
-                                        Kirinyaga, Kenya
+                                        020 Mutira, Kirinyaga County, Kenya
                                     </li>
                                     <li className="text-gray-400">
                                         <i className="fas fa-phone mr-2"></i>
-                                        +254 700 123 456
+                                        +254-790-344-724
+                                    </li>
+                                    <li className="text-gray-400">
+                                        <i className="fas fa-phone mr-2"></i>
+                                        +254-741-122-375
+                                    </li>
+                                    <li className="text-gray-400">
+                                        <i className="fas fa-phone mr-2"></i>
+                                        +254-754-919-395
                                     </li>
                                     <li className="text-gray-400">
                                         <i className="fas fa-envelope mr-2"></i>
-                                        info@zocfarms.co.ke
+                                        zedjahorganiccrowdfarms@gmail.com
                                     </li>
                                 </ul>
                             </div>

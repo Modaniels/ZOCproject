@@ -671,8 +671,8 @@ export default function AdminDashboard({ stats, recent_orders, recent_products, 
             
             <div className="min-h-screen" style={{
                 fontFamily: 'Inter, sans-serif',
-                backgroundColor: '#FDF8E3',
-                color: '#333333'
+                backgroundColor: '#FAFAFA',
+                color: '#1F2937'
             }}>
                 <Navigation />
                 

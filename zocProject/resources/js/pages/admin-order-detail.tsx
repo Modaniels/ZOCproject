@@ -263,7 +263,7 @@ export default function AdminOrderDetail({ order: initialOrder }: Props) {
             
             <div className="min-h-screen bg-gray-50" style={{
                 fontFamily: 'Inter, sans-serif',
-                color: '#333333'
+                color: '#1F2937'
             }}>
                 <Navigation />
                 
@@ -278,7 +278,7 @@ export default function AdminOrderDetail({ order: initialOrder }: Props) {
                                 <ArrowLeftIcon className="w-5 h-5" />
                             </Link>
                             <div>
-                                <h1 className="text-3xl font-bold" style={{color: '#3A4C2F'}}>
+                                <h1 className="text-3xl font-bold" style={{color: '#1F2937'}}>
                                     Order {order.order_number}
                                 </h1>
                                 <p className="text-gray-600 mt-1">

@@ -259,7 +259,7 @@ export default function AdminOrders({ orders: initialOrders }: Props) {
             
             <div className="min-h-screen bg-gray-50" style={{
                 fontFamily: 'Inter, sans-serif',
-                color: '#333333'
+                color: '#1F2937'
             }}>
                 <Navigation />
                 
@@ -267,7 +267,7 @@ export default function AdminOrders({ orders: initialOrders }: Props) {
                     {/* Header */}
                     <div className="flex justify-between items-center mb-8">
                         <div>
-                            <h1 className="text-3xl font-bold" style={{color: '#3A4C2F'}}>
+                            <h1 className="text-3xl font-bold" style={{color: '#1F2937'}}>
                                 Orders Management
                             </h1>
                             <p className="text-gray-600 mt-2">

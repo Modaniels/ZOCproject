@@ -224,7 +224,7 @@ export default function AdminProductForm({ product, categories, isEdit = false }
             
             <div className="min-h-screen bg-gray-50" style={{
                 fontFamily: 'Inter, sans-serif',
-                color: '#333333'
+                color: '#1F2937'
             }}>
                 <Navigation />
                 

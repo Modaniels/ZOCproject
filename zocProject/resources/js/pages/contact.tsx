@@ -19,37 +19,38 @@ export default function Contact() {
             </Head>
             <div className="min-h-screen" style={{
                 fontFamily: 'Inter, sans-serif',
-                backgroundColor: '#FDF8E3',
-                color: '#333333'
+                backgroundColor: '#FAFAFA',
+                color: '#1F2937'
             }}>
                 {/* Header & Navigation */}
                 <Navigation />
 
                 {/* Hero Section */}
                 <section className="relative min-h-96 flex items-center justify-center pt-20" style={{
-                    background: `linear-gradient(rgba(58, 76, 47, 0.8), rgba(58, 76, 47, 0.8)), linear-gradient(to right, #3A4C2F, #7BB661)`,
+                    background: `linear-gradient(rgba(31, 41, 55, 0.75), rgba(31, 41, 55, 0.75)), linear-gradient(to right, #2E7D32, #7BB661)`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                 }}>
                     <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
-                        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
-                            Contact <span style={{color: '#F4C542'}}>Us</span>
+                        <h1 className="text-5xl md:text-6xl font-bold text-white mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
+                            Contact <span style={{color: '#D4AF37', textShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'}}>Us</span>
                         </h1>
                         <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-                            Get in touch with us to learn more about our services or to place an order.
+                            Get in touch with us. From farm to table, we're here to inspire the agricultural value chain together.
                         </p>
                     </div>
                 </section>
 
                 {/* Contact Form & Information */}
-                <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+                <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
                     <div className="max-w-7xl mx-auto">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                             {/* Contact Form */}
                             <div>
-                                <h2 className="text-3xl font-bold mb-8" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                     Send us a Message
                                 </h2>
+                                <div className="w-24 h-1 mb-8" style={{backgroundColor: '#D4AF37'}}></div>
                                 <form className="space-y-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
@@ -60,7 +61,10 @@ export default function Contact() {
                                                 type="text"
                                                 id="firstName"
                                                 name="firstName"
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                                                style={{}}  
+                                                onFocus={(e) => e.currentTarget.style.boxShadow = '0 0 0 2px rgba(46, 125, 50, 0.5)'}
+                                                onBlur={(e) => e.currentTarget.style.boxShadow = ''}
                                                 required
                                             />
                                         </div>
@@ -72,7 +76,10 @@ export default function Contact() {
                                                 type="text"
                                                 id="lastName"
                                                 name="lastName"
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                                                style={{}}  
+                                                onFocus={(e) => e.currentTarget.style.boxShadow = '0 0 0 2px rgba(46, 125, 50, 0.5)'}
+                                                onBlur={(e) => e.currentTarget.style.boxShadow = ''}
                                                 required
                                             />
                                         </div>
@@ -85,7 +92,10 @@ export default function Contact() {
                                             type="email"
                                             id="email"
                                             name="email"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                                            style={{}}  
+                                            onFocus={(e) => e.currentTarget.style.boxShadow = '0 0 0 2px rgba(46, 125, 50, 0.5)'}
+                                            onBlur={(e) => e.currentTarget.style.boxShadow = ''}
                                             required
                                         />
                                     </div>
@@ -97,7 +107,10 @@ export default function Contact() {
                                             type="tel"
                                             id="phone"
                                             name="phone"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                                            style={{}}  
+                                            onFocus={(e) => e.currentTarget.style.boxShadow = '0 0 0 2px rgba(46, 125, 50, 0.5)'}
+                                            onBlur={(e) => e.currentTarget.style.boxShadow = ''}
                                         />
                                     </div>
                                     <div>
@@ -107,7 +120,10 @@ export default function Contact() {
                                         <select
                                             id="subject"
                                             name="subject"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                                            style={{}}  
+                                            onFocus={(e) => e.currentTarget.style.boxShadow = '0 0 0 2px rgba(46, 125, 50, 0.5)'}
+                                            onBlur={(e) => e.currentTarget.style.boxShadow = ''}
                                             required
                                         >
                                             <option value="">Select a subject</option>
@@ -126,15 +142,18 @@ export default function Contact() {
                                             id="message"
                                             name="message"
                                             rows={6}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                                            style={{}}  
+                                            onFocus={(e) => e.currentTarget.style.boxShadow = '0 0 0 2px rgba(46, 125, 50, 0.5)'}
+                                            onBlur={(e) => e.currentTarget.style.boxShadow = ''}
                                             placeholder="Tell us more about your inquiry..."
                                             required
                                         ></textarea>
                                     </div>
                                     <button
                                         type="submit"
-                                        className="w-full py-4 px-8 rounded-lg font-semibold text-lg transition-transform hover:scale-105 text-white"
-                                        style={{backgroundColor: '#3A4C2F'}}
+                                        className="w-full rounded-lg px-10 py-5 font-semibold text-lg transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 text-white"
+                                        style={{backgroundColor: '#2E7D32', boxShadow: '0 4px 14px rgba(46, 125, 50, 0.39)'}}
                                     >
                                         Send Message
                                     </button>
@@ -143,62 +162,61 @@ export default function Contact() {
                             
                             {/* Contact Information */}
                             <div>
-                                <h2 className="text-3xl font-bold mb-8" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                     Get in Touch
                                 </h2>
+                                <div className="w-24 h-1 mb-8" style={{backgroundColor: '#D4AF37'}}></div>
                                 <div className="space-y-8">
                                     <div className="flex items-start space-x-4">
-                                        <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" 
-                                             style={{backgroundColor: '#7BB661'}}>
-                                            <i className="fas fa-map-marker-alt text-white text-lg"></i>
+                                        <div className="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0" 
+                                             style={{backgroundColor: '#E8F5E9'}}>
+                                            <i className="fas fa-map-marker-alt text-3xl" style={{color: '#2E7D32'}}></i>
                                         </div>
                                         <div>
-                                            <h3 className="text-lg font-semibold mb-2" style={{color: '#3A4C2F'}}>Our Location</h3>
+                                            <h3 className="text-lg font-semibold mb-2" style={{color: '#1F2937'}}>Our Location</h3>
                                             <p className="text-gray-600">
+                                                020 Mutira<br />
                                                 Kirinyaga County, Kenya<br />
-                                                Central Kenya Region<br />
                                                 East Africa
                                             </p>
                                         </div>
                                     </div>
 
                                     <div className="flex items-start space-x-4">
-                                        <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" 
-                                             style={{backgroundColor: '#F4C542'}}>
-                                            <i className="fas fa-phone text-lg" style={{color: '#333333'}}></i>
+                                        <div className="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0" 
+                                             style={{backgroundColor: '#FFF8E1'}}>
+                                            <i className="fas fa-phone text-3xl" style={{color: '#F57F17'}}></i>
                                         </div>
                                         <div>
-                                            <h3 className="text-lg font-semibold mb-2" style={{color: '#3A4C2F'}}>Phone Numbers</h3>
+                                            <h3 className="text-lg font-semibold mb-2" style={{color: '#1F2937'}}>Phone Numbers</h3>
                                             <p className="text-gray-600">
-                                                Main: +254 700 123 456<br />
-                                                Sales: +254 701 234 567<br />
-                                                Support: +254 702 345 678
+                                                +254-790-344-724<br />
+                                                +254-741-122-375<br />
+                                                +254-754-919-395
                                             </p>
                                         </div>
                                     </div>
 
                                     <div className="flex items-start space-x-4">
-                                        <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" 
-                                             style={{backgroundColor: '#6B4E2E'}}>
-                                            <i className="fas fa-envelope text-white text-lg"></i>
+                                        <div className="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0" 
+                                             style={{backgroundColor: '#E3F2FD'}}>
+                                            <i className="fas fa-envelope text-3xl" style={{color: '#1565C0'}}></i>
                                         </div>
                                         <div>
-                                            <h3 className="text-lg font-semibold mb-2" style={{color: '#3A4C2F'}}>Email Addresses</h3>
+                                            <h3 className="text-lg font-semibold mb-2" style={{color: '#1F2937'}}>Email Address</h3>
                                             <p className="text-gray-600">
-                                                General: info@zocfarms.co.ke<br />
-                                                Sales: sales@zocfarms.co.ke<br />
-                                                Support: support@zocfarms.co.ke
+                                                zedjahorganiccrowdfarms@gmail.com
                                             </p>
                                         </div>
                                     </div>
 
                                     <div className="flex items-start space-x-4">
-                                        <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" 
-                                             style={{backgroundColor: '#3A4C2F'}}>
-                                            <i className="fas fa-clock text-white text-lg"></i>
+                                        <div className="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0" 
+                                             style={{backgroundColor: '#FFF3E0'}}>
+                                            <i className="fas fa-clock text-3xl" style={{color: '#E65100'}}></i>
                                         </div>
                                         <div>
-                                            <h3 className="text-lg font-semibold mb-2" style={{color: '#3A4C2F'}}>Business Hours</h3>
+                                            <h3 className="text-lg font-semibold mb-2" style={{color: '#1F2937'}}>Business Hours</h3>
                                             <p className="text-gray-600">
                                                 Monday - Friday: 8:00 AM - 6:00 PM<br />
                                                 Saturday: 9:00 AM - 4:00 PM<br />
@@ -210,7 +228,7 @@ export default function Contact() {
 
                                 {/* Social Media */}
                                 <div className="mt-12">
-                                    <h3 className="text-xl font-bold mb-6" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    <h3 className="text-xl font-bold mb-6" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                         Follow Us
                                     </h3>
                                     <div className="flex space-x-4">
@@ -242,12 +260,13 @@ export default function Contact() {
                 </section>
 
                 {/* Map Section */}
-                <section className="py-20" style={{backgroundColor: '#FDF8E3'}}>
+                <section className="py-24" style={{backgroundColor: '#F9FAFB'}}>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-12">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                        <div className="text-center mb-20">
+                            <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                 Find Us on the Map
                             </h2>
+                            <div className="w-24 h-1 mx-auto mb-6" style={{backgroundColor: '#D4AF37'}}></div>
                             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                                 Visit our farm in Kirinyaga County to see our sustainable farming practices in action.
                             </p>
@@ -263,20 +282,21 @@ export default function Contact() {
                 </section>
 
                 {/* FAQ Section */}
-                <section className="py-20 bg-white">
+                <section className="py-24 bg-white">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                        <div className="text-center mb-20">
+                            <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                 Frequently Asked Questions
                             </h2>
+                            <div className="w-24 h-1 mx-auto mb-6" style={{backgroundColor: '#D4AF37'}}></div>
                             <p className="text-xl text-gray-600">
                                 Quick answers to common questions about our products and services.
                             </p>
                         </div>
 
                         <div className="space-y-6">
-                            <div className="border border-gray-200 rounded-lg p-6">
-                                <h3 className="text-lg font-bold mb-3" style={{color: '#3A4C2F'}}>
+                            <div className="rounded-3xl p-10 hover:shadow-2xl transition-all duration-300" style={{backgroundColor: 'white', boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB'}}>
+                                <h3 className="text-lg font-bold mb-3" style={{color: '#1F2937'}}>
                                     What makes your products organic?
                                 </h3>
                                 <p className="text-gray-600">
@@ -284,8 +304,8 @@ export default function Contact() {
                                 </p>
                             </div>
 
-                            <div className="border border-gray-200 rounded-lg p-6">
-                                <h3 className="text-lg font-bold mb-3" style={{color: '#3A4C2F'}}>
+                            <div className="rounded-3xl p-10 hover:shadow-2xl transition-all duration-300" style={{backgroundColor: 'white', boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB'}}>
+                                <h3 className="text-lg font-bold mb-3" style={{color: '#1F2937'}}>
                                     Do you offer delivery services?
                                 </h3>
                                 <p className="text-gray-600">
@@ -293,8 +313,8 @@ export default function Contact() {
                                 </p>
                             </div>
 
-                            <div className="border border-gray-200 rounded-lg p-6">
-                                <h3 className="text-lg font-bold mb-3" style={{color: '#3A4C2F'}}>
+                            <div className="rounded-3xl p-10 hover:shadow-2xl transition-all duration-300" style={{backgroundColor: 'white', boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB'}}>
+                                <h3 className="text-lg font-bold mb-3" style={{color: '#1F2937'}}>
                                     How can I become a partner farmer?
                                 </h3>
                                 <p className="text-gray-600">
@@ -302,8 +322,8 @@ export default function Contact() {
                                 </p>
                             </div>
 
-                            <div className="border border-gray-200 rounded-lg p-6">
-                                <h3 className="text-lg font-bold mb-3" style={{color: '#3A4C2F'}}>
+                            <div className="rounded-3xl p-10 hover:shadow-2xl transition-all duration-300" style={{backgroundColor: 'white', boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB'}}>
+                                <h3 className="text-lg font-bold mb-3" style={{color: '#1F2937'}}>
                                     What payment methods do you accept?
                                 </h3>
                                 <p className="text-gray-600">
@@ -311,8 +331,8 @@ export default function Contact() {
                                 </p>
                             </div>
 
-                            <div className="border border-gray-200 rounded-lg p-6">
-                                <h3 className="text-lg font-bold mb-3" style={{color: '#3A4C2F'}}>
+                            <div className="rounded-3xl p-10 hover:shadow-2xl transition-all duration-300" style={{backgroundColor: 'white', boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB'}}>
+                                <h3 className="text-lg font-bold mb-3" style={{color: '#1F2937'}}>
                                     Can I visit your farm?
                                 </h3>
                                 <p className="text-gray-600">
@@ -324,19 +344,19 @@ export default function Contact() {
                 </section>
 
                 {/* Call to Action */}
-                <section className="py-20" style={{backgroundColor: '#F4C542'}}>
+                <section className="py-24" style={{backgroundColor: '#1F2937'}}>
                     <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{color: '#333333', fontFamily: 'Space Grotesk, sans-serif'}}>
+                        <h2 className="text-5xl md:text-6xl font-bold mb-6" style={{color: '#FAFAFA', fontFamily: 'Space Grotesk, sans-serif'}}>
                             Ready to Start Your Organic Journey?
                         </h2>
-                        <p className="text-xl mb-8 leading-relaxed" style={{color: '#333333'}}>
+                        <p className="text-xl mb-8 leading-relaxed" style={{color: '#F9FAFB'}}>
                             Whether you're a consumer looking for fresh organic produce or a farmer interested in sustainable practices, we're here to help. Get in touch today!
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a href="/products" className="px-8 py-4 rounded-full font-semibold text-lg transition-transform hover:scale-105 inline-block text-white" style={{backgroundColor: '#3A4C2F'}}>
+                            <a href="/products" className="rounded-lg px-10 py-5 font-semibold text-lg transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 inline-block text-white" style={{backgroundColor: '#2E7D32', boxShadow: '0 4px 14px rgba(46, 125, 50, 0.39)'}}>
                                 Shop Now
                             </a>
-                            <a href="/services" className="bg-white border-2 px-8 py-4 rounded-full font-semibold text-lg transition-transform hover:scale-105 inline-block" style={{color: '#3A4C2F', borderColor: '#3A4C2F'}}>
+                            <a href="/services" className="bg-white rounded-lg px-10 py-5 font-semibold text-lg transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 inline-block" style={{color: '#1F2937', boxShadow: '0 4px 14px rgba(255, 255, 255, 0.2)'}}>
                                 Learn About Our Services
                             </a>
                         </div>
@@ -344,7 +364,7 @@ export default function Contact() {
                 </section>
 
                 {/* Footer */}
-                <footer className="text-white py-16" style={{backgroundColor: '#333333'}}>
+                <footer className="text-white py-16" style={{backgroundColor: '#1A1A1A'}}>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         {/* Newsletter Section */}
                         <Newsletter />
@@ -352,12 +372,12 @@ export default function Contact() {
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <div>
                                 <div className="flex items-center space-x-3 mb-6">
-                                    <div className="text-2xl font-bold" style={{color: '#F4C542', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    <div className="text-2xl font-bold" style={{color: '#D4AF37', fontFamily: 'Space Grotesk, sans-serif'}}>
                                         ZOC Farm
                                     </div>
                                 </div>
                                 <p className="text-gray-400 mb-6 leading-relaxed">
-                                    Connect with us and join our mission to transform agriculture through sustainable practices and transparent partnerships.
+                                    Zedjah Organic Crowd Farms - A systemized regenerative farming company specializing in organic food production and farm management from Kirinyaga County, Kenya.
                                 </p>
                                 <div className="flex space-x-4">
                                     <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
@@ -391,15 +411,23 @@ export default function Contact() {
                                 <ul className="space-y-3">
                                     <li className="text-gray-400">
                                         <i className="fas fa-map-marker-alt mr-2"></i>
-                                        Kirinyaga, Kenya
+                                        020 Mutira, Kirinyaga County, Kenya
                                     </li>
                                     <li className="text-gray-400">
                                         <i className="fas fa-phone mr-2"></i>
-                                        +254 700 123 456
+                                        +254-790-344-724
+                                    </li>
+                                    <li className="text-gray-400">
+                                        <i className="fas fa-phone mr-2"></i>
+                                        +254-741-122-375
+                                    </li>
+                                    <li className="text-gray-400">
+                                        <i className="fas fa-phone mr-2"></i>
+                                        +254-754-919-395
                                     </li>
                                     <li className="text-gray-400">
                                         <i className="fas fa-envelope mr-2"></i>
-                                        info@zocfarms.co.ke
+                                        zedjahorganiccrowdfarms@gmail.com
                                     </li>
                                 </ul>
                             </div>

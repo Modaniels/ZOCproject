@@ -26,10 +26,10 @@ class DatabaseSeeder extends Seeder
 
         // Create admin user
         User::firstOrCreate(
-            ['email' => 'admin@zocfarm.com'],
+            ['email' => 'Zedjah@Admin'],
             [
                 'name' => 'ZOC Farm Admin',
-                'password' => Hash::make('admin123'),
+                'password' => Hash::make('Super@ZocAdmin$42'),
                 'email_verified_at' => now(),
             ]
         );

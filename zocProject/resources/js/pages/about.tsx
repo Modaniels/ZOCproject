@@ -19,52 +19,52 @@ export default function About() {
             </Head>
             <div className="min-h-screen" style={{
                 fontFamily: 'Inter, sans-serif',
-                backgroundColor: '#FDF8E3',
-                color: '#333333'
+                backgroundColor: '#FAFAFA',
+                color: '#1F2937'
             }}>
                 {/* Header & Navigation */}
                 <Navigation />
 
                 {/* Hero Section */}
                 <section className="relative min-h-96 flex items-center justify-center pt-20" style={{
-                    backgroundImage: `url('/images/aboutHero.jpg')`,
+                    backgroundImage: `url('/images/more_imgs/about_img.png')`,
                     backgroundSize: '150%',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
                 }}>
-                    <div className="hero-overlay absolute inset-0" style={{backgroundColor: 'rgba(58, 76, 47, 0.85)'}}></div>
+                    <div className="hero-overlay absolute inset-0" style={{backgroundColor: 'rgba(31, 41, 55, 0.75)'}}></div>
                     <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
-                            About <span style={{color: '#F4C542'}}>ZOC Farm</span>
+                            About <span style={{color: '#D4AF37', textShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'}}>Zedjah Organic Crowd Farms</span>
                         </h1>
                         <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-                            Learn about our mission, vision, and commitment to transforming agriculture through sustainable practices.
+                            Inspiring the agricultural value chain with organic food production and farm management from farm to table.
                         </p>
                     </div>
                 </section>
 
                 {/* Company Story */}
-                <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+                <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
                     <div className="max-w-7xl mx-auto">
                         <div className="grid md:grid-cols-2 gap-16 items-center">
                             <div>
-                                <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                <h2 className="text-5xl md:text-6xl font-bold mb-6" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                     Our Story
                                 </h2>
                                 <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-                                    Founded with a vision to revolutionize agriculture in Kenya, Zedjah Organic Crowd Farms Ltd emerged from the recognition that sustainable farming practices could transform not just the land, but entire communities.
+                                    Zedjah Organic Crowd Farms is a farm management company and organic food producing entity founded in 2016, with a foundation history in early agriculture. We are a systemized regenerative farming company operating in the organic farming model.
                                 </p>
                                 <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                                    Starting in the fertile lands of Kirinyaga County, we began with a simple yet powerful idea: to create a transparent platform that unites farmers, investors, contractors, and consumers under one sustainable ecosystem.
+                                    Starting from 020 Mutira, Kirinyaga County, Kenya, our journey has been guided by a commitment to safe and healthy foods for nutrition and community resilience in our agribusiness value chain.
                                 </p>
                                 <p className="text-lg text-gray-600 leading-relaxed">
-                                    Today, we stand as a testament to what's possible when innovation meets tradition, and when community collaboration drives agricultural excellence.
+                                    Today, we stand as a leader in sustainable agriculture, prioritizing agroecology and regenerative farming practices that benefit both people and the planet.
                                 </p>
                             </div>
                             <div className="rounded-2xl h-96 overflow-hidden shadow-lg">
                                 <img 
-                                    src="/images/companystoryimg.jpg" 
-                                    alt="Company Story" 
+                                    src="/images/more_imgs/our_story.jpeg" 
+                                    alt="Our Story" 
                                     className="w-full h-full object-cover"
                                 />
                             </div>
@@ -73,36 +73,37 @@ export default function About() {
                 </section>
 
                 {/* Mission & Vision */}
-                <section className="py-20 px-4 sm:px-6 lg:px-8" style={{backgroundColor: '#FDF8E3'}}>
+                <section className="py-24 px-4 sm:px-6 lg:px-8" style={{backgroundColor: '#F9FAFB'}}>
                     <div className="max-w-7xl mx-auto">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                        <div className="text-center mb-20">
+                            <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                 Our Mission & Vision
                             </h2>
+                            <div className="w-24 h-1 mx-auto mb-6" style={{backgroundColor: '#D4AF37'}}></div>
                         </div>
 
                         <div className="grid md:grid-cols-2 gap-12">
-                            <div className="bg-white rounded-2xl p-8 shadow-lg">
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{backgroundColor: '#3A4C2F'}}>
-                                    <i className="fas fa-bullseye text-2xl text-white"></i>
+                            <div className="bg-white rounded-3xl p-10 hover:shadow-2xl transition-all duration-300" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB'}}>
+                                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-8" style={{backgroundColor: '#E8F5E9'}}>
+                                    <i className="fas fa-bullseye text-3xl" style={{color: '#2E7D32'}}></i>
                                 </div>
-                                <h3 className="text-2xl font-bold mb-4 text-center" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                <h3 className="text-2xl font-bold mb-6 text-center" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                     Our Mission
                                 </h3>
                                 <p className="text-gray-600 leading-relaxed text-center">
-                                    To champion regenerative farming practices that produce healthy food, protect the environment and uplift smallholder farmers through skills training, technical support and reliable market access. We manage every stage of the food system from sourcing inputs to delivering retail-ready products.
+                                    To serve as an agricultural organization with accountability, innovation, integrity and value for money, with social economic values at the heart of agroecology. We champion regenerative farming practices that produce healthy food, protect the environment and uplift communities through sustainable agribusiness.
                                 </p>
                             </div>
 
-                            <div className="bg-white rounded-2xl p-8 shadow-lg">
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{backgroundColor: '#7BB661'}}>
-                                    <i className="fas fa-eye text-2xl text-white"></i>
+                            <div className="bg-white rounded-3xl p-10 hover:shadow-2xl transition-all duration-300" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB'}}>
+                                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-8" style={{backgroundColor: '#FFF8E1'}}>
+                                    <i className="fas fa-eye text-3xl" style={{color: '#F57F17'}}></i>
                                 </div>
-                                <h3 className="text-2xl font-bold mb-4 text-center" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                <h3 className="text-2xl font-bold mb-6 text-center" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                     Our Vision
                                 </h3>
                                 <p className="text-gray-600 leading-relaxed text-center">
-                                    To transform the agricultural value chain by uniting farmers, investors, contractors and consumers under a single transparent platform, ensuring quality, sustainability and fair margins at every link.
+                                    To be the leading farm management and organic food industry in sustainable agriculture, prioritizing agroecology for the world we need to create.
                                 </p>
                             </div>
                         </div>
@@ -110,51 +111,64 @@ export default function About() {
                 </section>
 
                 {/* Values */}
-                <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+                <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
                     <div className="max-w-7xl mx-auto">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                        <div className="text-center mb-20">
+                            <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                 Our Core Values
                             </h2>
+                            <div className="w-24 h-1 mx-auto mb-6" style={{backgroundColor: '#D4AF37'}}></div>
                             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                                 The principles that guide everything we do
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-3 gap-8">
-                            <div className="text-center p-6">
-                                <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{backgroundColor: '#F4C542'}}>
-                                    <i className="fas fa-leaf text-3xl" style={{color: '#333333'}}></i>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+                            <div className="group text-center p-8 bg-white rounded-3xl hover:shadow-2xl transition-all duration-300" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.06)', border: '1px solid #E5E7EB'}}>
+                                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300" style={{backgroundColor: '#E8F5E9'}}>
+                                    <i className="fas fa-balance-scale text-3xl" style={{color: '#2E7D32'}}></i>
                                 </div>
-                                <h3 className="text-xl font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    Sustainability
+                                <h3 className="text-xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Accountability
                                 </h3>
                                 <p className="text-gray-600">
-                                    We prioritize environmental stewardship in all our farming practices, ensuring the land remains fertile for future generations.
+                                    Being transparent in every value chain through the engagement level.
                                 </p>
                             </div>
 
-                            <div className="text-center p-6">
-                                <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{backgroundColor: '#7BB661'}}>
-                                    <i className="fas fa-handshake text-3xl text-white"></i>
+                            <div className="group text-center p-8 bg-white rounded-3xl hover:shadow-2xl transition-all duration-300" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.06)', border: '1px solid #E5E7EB'}}>
+                                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300" style={{backgroundColor: '#FFF8E1'}}>
+                                    <i className="fas fa-lightbulb text-3xl" style={{color: '#F57F17'}}></i>
                                 </div>
-                                <h3 className="text-xl font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    Transparency
+                                <h3 className="text-xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Innovation
                                 </h3>
                                 <p className="text-gray-600">
-                                    We maintain open and honest relationships with all stakeholders, providing full visibility into our processes and practices.
+                                    To remain steadfast at intuitive solution thinking to remain sustainable.
                                 </p>
                             </div>
 
-                            <div className="text-center p-6">
-                                <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{backgroundColor: '#6B4E2E'}}>
-                                    <i className="fas fa-users text-3xl text-white"></i>
+                            <div className="group text-center p-8 bg-white rounded-3xl hover:shadow-2xl transition-all duration-300" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.06)', border: '1px solid #E5E7EB'}}>
+                                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300" style={{backgroundColor: '#E3F2FD'}}>
+                                    <i className="fas fa-handshake text-3xl" style={{color: '#1565C0'}}></i>
                                 </div>
-                                <h3 className="text-xl font-bold mb-4" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    Community
+                                <h3 className="text-xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Integrity
                                 </h3>
                                 <p className="text-gray-600">
-                                    We believe in the power of community collaboration to drive positive change and shared prosperity.
+                                    To accommodate humanity and orders of human rights in the peace of freedom and democracy.
+                                </p>
+                            </div>
+
+                            <div className="group text-center p-8 bg-white rounded-3xl hover:shadow-2xl transition-all duration-300" style={{boxShadow: '0 10px 40px rgba(0,0,0,0.06)', border: '1px solid #E5E7EB'}}>
+                                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300" style={{backgroundColor: '#FFF3E0'}}>
+                                    <i className="fas fa-dollar-sign text-3xl" style={{color: '#E65100'}}></i>
+                                </div>
+                                <h3 className="text-xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Value For Money
+                                </h3>
+                                <p className="text-gray-600">
+                                    To assure and credit return on investment (ROI) reducing and sustaining risks for prospective agribusiness.
                                 </p>
                             </div>
                         </div>
@@ -162,35 +176,36 @@ export default function About() {
                 </section>
 
                 {/* Statistics */}
-                <section className="py-20 px-4 sm:px-6 lg:px-8" style={{backgroundColor: '#3A4C2F'}}>
+                <section className="py-24 px-4 sm:px-6 lg:px-8" style={{backgroundColor: '#1F2937'}}>
                     <div className="max-w-7xl mx-auto text-white">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
+                        <div className="text-center mb-20">
+                            <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{fontFamily: 'Space Grotesk, sans-serif'}}>
                                 Our Impact in Numbers
                             </h2>
+                            <div className="w-24 h-1 mx-auto mb-6" style={{backgroundColor: '#D4AF37'}}></div>
                             <p className="text-xl text-gray-200">
                                 Measurable results that speak to our commitment to excellence
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            <div className="text-center">
-                                <div className="text-5xl font-bold mb-4" style={{color: '#F4C542'}}>1,000+</div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                            <div className="text-center p-6 rounded-2xl transition-transform duration-300 hover:-translate-y-2">
+                                <div className="text-6xl font-bold mb-4" style={{color: '#D4AF37', textShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'}}>1,000+</div>
                                 <h3 className="text-xl font-semibold mb-2">Farmers United</h3>
                                 <p className="text-gray-300">Smallholder farmers empowered through our platform</p>
                             </div>
-                            <div className="text-center">
-                                <div className="text-5xl font-bold mb-4" style={{color: '#F4C542'}}>50+</div>
+                            <div className="text-center p-6 rounded-2xl transition-transform duration-300 hover:-translate-y-2">
+                                <div className="text-6xl font-bold mb-4" style={{color: '#D4AF37', textShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'}}>50+</div>
                                 <h3 className="text-xl font-semibold mb-2">Investors Partnered</h3>
                                 <p className="text-gray-300">Strategic investors supporting agricultural innovation</p>
                             </div>
-                            <div className="text-center">
-                                <div className="text-5xl font-bold mb-4" style={{color: '#F4C542'}}>25+</div>
+                            <div className="text-center p-6 rounded-2xl transition-transform duration-300 hover:-translate-y-2">
+                                <div className="text-6xl font-bold mb-4" style={{color: '#D4AF37', textShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'}}>25+</div>
                                 <h3 className="text-xl font-semibold mb-2">Contractors Engaged</h3>
                                 <p className="text-gray-300">Professional contractors ensuring quality standards</p>
                             </div>
-                            <div className="text-center">
-                                <div className="text-5xl font-bold mb-4" style={{color: '#F4C542'}}>5,000+</div>
+                            <div className="text-center p-6 rounded-2xl transition-transform duration-300 hover:-translate-y-2">
+                                <div className="text-6xl font-bold mb-4" style={{color: '#D4AF37', textShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'}}>5,000+</div>
                                 <h3 className="text-xl font-semibold mb-2">Consumers Served</h3>
                                 <p className="text-gray-300">Families enjoying fresh, organic produce</p>
                             </div>
@@ -199,10 +214,10 @@ export default function About() {
                 </section>
 
                 {/* Team Section */}
-                <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+                <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
                     <div className="max-w-7xl mx-auto">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
+                        <div className="text-center mb-20">
+                            <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
                                 Our Leadership Team
                             </h2>
                             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -210,47 +225,21 @@ export default function About() {
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-3 gap-8">
+                        <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-8 max-w-md mx-auto">
                             <div className="text-center">
-                                <div className="rounded-2xl h-64 overflow-hidden mb-6">
+                                <div className="rounded-2xl h-80 overflow-hidden mb-6">
                                     <img 
                                         src="/images/zacharycto.jpg" 
-                                        alt="CEO Photo" 
+                                        alt="Founder Photo" 
                                         className="w-full h-full object-cover"
                                     />
                                 </div>
-                                <h3 className="text-xl font-bold mb-2" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    Zachariah Mwangi
+                                <h3 className="text-2xl font-bold mb-2" style={{color: '#1F2937', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    Zacharian Mwangi Muriuki
                                 </h3>
-                                <p className="text-gray-600 mb-2">Chief Executive Officer</p>
-                                <p className="text-sm text-gray-500">
-                                    20+ years in agricultural innovation and sustainable farming practices.
-                                </p>
-                            </div>
-
-                            <div className="text-center">
-                                <div className="bg-gray-200 rounded-2xl h-64 flex items-center justify-center mb-6">
-                                    <span className="text-gray-500">CTO Photo</span>
-                                </div>
-                                <h3 className="text-xl font-bold mb-2" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    Sarah Wanjiku
-                                </h3>
-                                <p className="text-gray-600 mb-2">Chief Technology Officer</p>
-                                <p className="text-sm text-gray-500">
-                                    Expert in agricultural technology and digital platform development.
-                                </p>
-                            </div>
-
-                            <div className="text-center">
-                                <div className="bg-gray-200 rounded-2xl h-64 flex items-center justify-center mb-6">
-                                    <span className="text-gray-500">COO Photo</span>
-                                </div>
-                                <h3 className="text-xl font-bold mb-2" style={{color: '#3A4C2F', fontFamily: 'Space Grotesk, sans-serif'}}>
-                                    Peter Kimani
-                                </h3>
-                                <p className="text-gray-600 mb-2">Chief Operations Officer</p>
-                                <p className="text-sm text-gray-500">
-                                    Operations specialist with focus on supply chain optimization.
+                                <p className="text-gray-600 mb-4 text-lg">Founder & General Manager</p>
+                                <p className="text-base text-gray-600 leading-relaxed">
+                                    A young developing proxy businessman, humanitarian, innovator and agroecologist. He's passionate about safe and healthy foods for nutrition and community resilience in his agribusiness value chain.
                                 </p>
                             </div>
                         </div>
@@ -258,7 +247,7 @@ export default function About() {
                 </section>
 
                 {/* Footer */}
-                <footer className="text-white py-16" style={{backgroundColor: '#333333'}}>
+                <footer className="text-white py-20" style={{backgroundColor: '#1A1A1A'}}>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         {/* Newsletter Section */}
                         <Newsletter />
@@ -266,12 +255,12 @@ export default function About() {
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <div>
                                 <div className="flex items-center space-x-3 mb-6">
-                                    <div className="text-2xl font-bold" style={{color: '#F4C542', fontFamily: 'Space Grotesk, sans-serif'}}>
+                                    <div className="text-2xl font-bold" style={{color: '#D4AF37', fontFamily: 'Space Grotesk, sans-serif'}}>
                                         ZOC Farm
                                     </div>
                                 </div>
                                 <p className="text-gray-400 mb-6 leading-relaxed">
-                                    Transforming the agricultural value chain through sustainable practices and transparent partnerships.
+                                    Zedjah Organic Crowd Farms - A systemized regenerative farming company specializing in organic food production and farm management from Kirinyaga County, Kenya.
                                 </p>
                                 <div className="flex space-x-4">
                                     <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
@@ -305,15 +294,23 @@ export default function About() {
                                 <ul className="space-y-3">
                                     <li className="text-gray-400">
                                         <i className="fas fa-map-marker-alt mr-2"></i>
-                                        Kirinyaga, Kenya
+                                        020 Mutira, Kirinyaga County, Kenya
                                     </li>
                                     <li className="text-gray-400">
                                         <i className="fas fa-phone mr-2"></i>
-                                        +254 700 123 456
+                                        +254-790-344-724
+                                    </li>
+                                    <li className="text-gray-400">
+                                        <i className="fas fa-phone mr-2"></i>
+                                        +254-741-122-375
+                                    </li>
+                                    <li className="text-gray-400">
+                                        <i className="fas fa-phone mr-2"></i>
+                                        +254-754-919-395
                                     </li>
                                     <li className="text-gray-400">
                                         <i className="fas fa-envelope mr-2"></i>
-                                        info@zocfarms.co.ke
+                                        zedjahorganiccrowdfarms@gmail.com
                                     </li>
                                 </ul>
                             </div>
